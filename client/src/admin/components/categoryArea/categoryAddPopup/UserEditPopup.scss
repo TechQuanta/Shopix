@@ -1,0 +1,205 @@
+.UserProductPopup {
+    z-index: 9999999999;
+
+    .UserProductPopupmain {
+        position: relative;
+        max-width: 35rem;
+        min-width: 35rem;
+        max-height: 80%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        width: 100%;
+        backdrop-filter: blur(20px);
+        border-radius: 18px;
+        background-color: #162938;
+        transition: transform 250ms;
+        box-shadow: 4px 3px 4px 5px black;
+        transition: all ease;
+        padding: 10px;
+        z-index: 9999999999;
+
+
+        @media only screen and (max-width: 480px) {
+            width: 351px;
+            height: 202px;
+        }
+
+        .UserProductPopupcloseBtn {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            color: white;
+            font-size: 19px;
+            cursor: pointer;
+        }
+
+        .UserProductPopupmainarea {
+            margin: 2px;
+            margin-left: 15px;
+            overflow: hidden;
+
+            .UserProductPopupmainareahead {
+                color: var(--text-color);
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                margin-top: 30px;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--text-color);
+
+                span {
+                    color: var(--text-color);
+                    text-align: center;
+                    font-size: 32px;
+                    font-weight: 600;
+                }
+            }
+
+            .UserProductPopupupmainareadetails {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-right: 0;
+                padding-right: 0;
+
+                form::-webkit-scrollbar {
+                    background: transparent;
+                }
+
+                form::-webkit-scrollbar-thumb {
+                    background: transparent;
+                }
+
+                // form
+                .producteditpopformcat {
+                    display: grid;
+                    gap: 8px;
+                    width: 100%;
+                    height: 420px;
+                    overflow-y: scroll;
+                    padding-bottom: 20px;
+                    color: var(--text-color);
+
+                    &::-webkit-scrollbar {
+                        background: transparent;
+                    }
+
+                    & ::-webkit-scrollbar-thumb {
+                        background: transparent;
+                    }
+
+                    .producteditpopforminput {
+                        padding: 8px;
+                        background: rgb(223, 229, 235);
+                        border-radius: 8px;
+                        border: 1px solid;
+                        font-size: 16px;
+
+                    }
+
+                    .producteditpopformimagearea {
+                        padding: 8px;
+                        background: rgb(223, 229, 235);
+                        border-radius: 8px;
+                        border: 1px solid;
+                        height: 128px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+
+                        .producteditpopformimageareab {
+                            color: rgb(124, 126, 128);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+                            gap: 8px;
+                        }
+                    }
+
+                    .uplimgseditpop {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        margin-top: 7px;
+                        margin-left: 4px;
+
+                        .uplimgseditpopb {
+                            position: relative;
+
+                            .uplimgseditpopc {
+                                background: rgb(223, 229, 235);
+                                cursor: pointer;
+                                border: 1px solid;
+                            }
+
+                            .uplimgseditpopd {
+                                position: absolute;
+                                bottom: 0;
+                                right: -8px;
+                                padding: 4px;
+                                color: aliceblue;
+                                background: red;
+                                border-radius: 9999px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .uplimgseditpope {
+                        color: red;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                    }
+
+                    .producteditpopformtextarae {
+                        height: 112px;
+                        background: seashell;
+                        padding: 12px;
+                        resize: none;
+                        border-radius: 12px;
+                        border: 1px solid;
+                    }
+
+                    .producteditpopformbuttonsubmit {
+                        padding-left: 0.75rem;
+                        padding-right: 0.75rem;
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        gap: 10px;
+                        font-size: 20px;
+                        margin-top: 8px;
+                        background: red;
+
+                        &:hover {
+                            background: rgb(203, 45, 45);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+
+        .opacityLayer {
+            opacity: 1;
+        }
+
+        .videoPlayer {
+            transform: scale(1);
+        }
+    }
+}

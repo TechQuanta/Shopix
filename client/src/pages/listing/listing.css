@@ -1,0 +1,233 @@
+.product_listingpage .productlisting .sidebarlisting {
+    width: 30%;
+    flex: 0 0 20%;
+}
+
+.product_listingpage .productlisting {
+    gap: 20px;
+}
+
+.product_listingpage .productlisting .content-right {
+    width: 70%;
+    flex: 0 0 80%;
+    padding-left: 50px;
+}
+
+.product_listingpage {
+    padding: 45px 0px;
+}
+
+.product_listingpage .productlisting .sidebarlisting .filterbox {
+    margin-bottom: 35px;
+}
+
+.product_listingpage .productlisting .sidebarlisting .filterbox h6 {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.product_listingpage .productlisting .sidebarlisting .filterbox .scroll {
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    max-height: 180px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.product_listingpage .productlisting .sidebarlisting .filterbox .scroll::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.product_listingpage .productlisting .sidebarlisting .filterbox .scroll ul li {
+    list-style: none;
+    margin-bottom: 0px;
+    width: 100%;
+    height: 35px;
+}
+
+.css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    padding-top: 3px !important;
+}
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root {
+    padding: 2px !important;
+}
+
+.css-ahj2mt-MuiTypography-root {
+    font-size: 14px !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+    width: 20px;
+    height: 20px;
+}
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked,
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate {
+    color: var(--theme-color) !important;
+}
+
+.range-slider .range-slider__thumb,
+.range-slider .range-slider__range {
+    background: var(--theme-color);
+}
+
+.range-slider .range-slider__thumb {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.range-slider {
+    height: 5px !important;
+}
+
+.content-right .showby {
+    width: 100%;
+    height: 50px;
+    background: #edeef5;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.content-right .showby .btnwrapper {
+    align-items: center;
+    margin-left: 10px;
+}
+
+.content-right .showby .btnwrapper button {
+    min-width: 35px !important;
+    width: 35px !important;
+    border-radius: 50% !important;
+    color: #000;
+
+}
+
+.content-right .showby .btnwrapper button svg {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.content-right .showby .btnwrapper button.active svg {
+    transform: scale(1.3);
+    color: var(--theme-color);
+}
+
+.content-right .showby .btnwrapper .onemenu svg {
+    font-size: 18px;
+}
+
+.content-right .showby .btnwrapper .twomenu svg {
+    font-size: 13px;
+}
+
+.content-right .showby .btnwrapper .threemenu svg {
+    font-size: 18px;
+}
+
+.content-right .showby .btnwrapper .fourmenu svg {
+    font-size: 15px;
+}
+
+.content-right .showbyfilter button {
+    min-width: auto !important;
+    color: #000 !important;
+    margin-right: 10px;
+    text-transform: capitalize !important;
+    border-radius: 10px;
+}
+
+.content-right .showbyfilter button svg {
+    color: #000;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.content-right .showperpage {
+    width: 100% !important;
+    text-align: center;
+}
+
+.showperpage .MuiPaper-root {
+    width: 80px !important;
+    text-align: center;
+}
+
+.content-right .productlisting {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-left: 10px;
+}
+
+.content-right .productlisting.three {
+    padding-left: 10px;
+}
+
+.content-right .productlisting.two {
+    padding-left: 60px;
+}
+
+.productlisting .productItem.four {
+    width: 23%;
+    height: 100% !important;
+}
+
+.productlisting .productItem.three {
+    width: 31.5%;
+    height: 100% !important;
+}
+
+.productlisting .productItem.two {
+    width: 45%;
+    height: 100% !important;
+}
+
+.productlisting .productItem.one .imgwrapper {
+    margin-bottom: 20px !important;
+}
+
+.productlisting .productItem.three .imgwrapper {
+    margin-bottom: 20px !important;
+}
+
+.productlisting .productItem.four .imgwrapper {
+    margin-bottom: 20px !important;
+}
+
+.css-j204z7-MuiFormControlLabel-root {
+    margin-bottom: 0 !important;
+}
+
+.productlisting .productItem.one {
+    width: 100%;
+    height: 100% !important;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row !important;
+}
+
+.productlisting .productItem.one .imgwrapper {
+    width: 25%;
+}
+
+.productlisting .productItem.one .info .butcart {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.content-right .paginationproductlisting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.css-kvsszq-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: var(--theme-color) !important;
+    color: #fff !important;
+}

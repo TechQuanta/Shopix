@@ -1,0 +1,82 @@
+.UserViewPopupmainarea {
+    position: relative;
+    padding: 20px;
+    width: 350px;
+    background-color: var(--side-link-hover-color2);
+    border-radius: 12px;
+
+    .UserViewPopupcloseBtn {
+        position: absolute;
+        top: 5px;
+        left: 9px;
+        font-size: 17px;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+
+    .UserViewPopupmainareahead {
+        color: var(--text-color);
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+
+        span {
+            color: var(--text-color);
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+        }
+    }
+
+    .UserViewPopupmainareadetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .UserViewPopupmainareadetailsavatar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 15px;
+
+            img {
+                height: 150px;
+                width: 150px;
+                border-radius: 18px;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        .UserViewPopupmainareadetailsareauv {
+            height: 274px;
+            overflow-y: scroll;
+            background: var(--side-link-hover-color);
+            padding: 15px;
+            border-radius: 12px;
+
+            .wrapUserViewPopupmainareadetailsarea {
+                background: var(--side-link-hover-color);
+                width: 100%;
+                border-radius: 12px;
+
+                .spandeatilsmainareapop {
+                    color: var(--text-color);
+                    font-size: 18px;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
+                    font-weight: 500;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    border-radius: 17px;
+}

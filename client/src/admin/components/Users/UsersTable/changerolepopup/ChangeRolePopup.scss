@@ -1,0 +1,210 @@
+$primary-color: #00005c; // Change color here. C'mon, try it! 
+$text-color: mix(#000, $primary-color, 64%);
+
+.UserViewPopuprole {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999999999;
+    backdrop-filter: blur(4px);
+
+
+    .UserViewPopupopacityLayerrole {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(3.5px);
+        -webkit-backdrop-filter: blur(3.5px);
+        opacity: 0;
+        transition: opacity 400ms;
+    }
+
+    .UserViewPopupmainrole {
+        position: relative;
+        backdrop-filter: blur(20px);
+        border-radius: 18px;
+        background-color: #162938;
+        transition: transform 250ms;
+        box-shadow: 4px 3px 4px 5px black;
+
+        @media only screen and (max-width: 480px) {
+            // width: 351px;
+            // height: 202px;
+        }
+
+        .UserViewPopupcloseBtnrole {
+            position: absolute;
+            top: -27px;
+            right: 10px;
+            font-size: 19px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .UserViewPopupmainarearole {
+            padding: 10px;
+
+            .UserViewPopupmainareaheadrole {
+                color: var(--text-color);
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid var(--text-color);
+
+                span {
+                    color: var(--text-color);
+                    text-align: center;
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+            }
+
+            .UserViewPopupmainareadetailsrole {
+                padding-bottom: 50px;
+                padding-top: 41px;
+                display: flex;
+                justify-content: center;
+                /* align-items: center; */
+                height: 123px;
+
+                .maincheckboxrolerole {
+                    display: flex;
+                    justify-items: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 50px;
+                    gap: 5px;
+                    margin-bottom: 5px;
+
+                    .maincheckboxrole-formrole {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .maincheckboxrole-spanrolenxlkng {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            justify-items: center;
+                            gap: 10px;
+                        }
+                    }
+
+                    .maincheckboxrole-labelrole {
+                        display: flex;
+                        cursor: pointer;
+                        font-weight: 500;
+                        position: relative;
+                        overflow: hidden;
+                        margin-bottom: 0.375em;
+
+                        /* Accessible outline */
+                        /* Remove comment to use */
+                        /*
+                          &:focus-within {
+                              outline: .125em solid $primary-color;
+                          }
+                        */
+                        .maincheckboxrole-inputrole {
+                            position: absolute;
+                            left: -9999px;
+
+                            &:checked+span {
+                                background-color: mix(#fff, $primary-color, 84%);
+                                color: black;
+
+                                &:before {
+                                    box-shadow: inset 0 0 0 0.4375em $primary-color;
+                                }
+                            }
+                        }
+
+                        .maincheckboxrole-spanrole {
+                            display: flex;
+                            align-items: center;
+                            padding: 0.375em 0.75em 0.375em 0.375em;
+                            border-radius: 99em; // or something higher...
+                            transition: 0.25s ease;
+                            color: white;
+                            font-size: 22px;
+
+                            &:hover {
+                                background-color: mix(#fff, $primary-color, 84%);
+                            }
+
+                            &:before {
+                                display: flex;
+                                flex-shrink: 0;
+                                content: "";
+                                background-color: #fff;
+                                width: 1.5em;
+                                height: 1.5em;
+                                border-radius: 50%;
+                                margin-right: 0.375em;
+                                transition: 0.25s ease;
+                                box-shadow: inset 0 0 0 0.125em $primary-color;
+                            }
+                        }
+                    }
+
+                    .maincheckboxrole-submitrole {
+                        padding: 8px;
+                        position: absolute;
+                        bottom: 0px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        font-weight: 700;
+                        background-color: mix(#fff, $primary-color, 84%);
+                        color: black;
+                        width: 100%;
+                        border-radius: 12px;
+                        font-size: 25px;
+                        display: block;
+                    }
+
+                    // Codepen spesific styling - only to center the elements in the pen preview and viewport
+                    .container {
+                        // position: absolute;
+                        // top: 0;
+                        // left: 0;
+                        // right: 0;
+                        // bottom: 0;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+
+        .opacityLayer {
+            opacity: 1;
+        }
+
+        .videoPlayer {
+            transform: scale(1);
+        }
+    }
+}

@@ -1,0 +1,228 @@
+.section {
+    padding: 45px 0px;
+    background-color: #f1f0f0cb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+}
+
+.productdetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* .productdetails .zoomslider {
+    padding-left: 32px !important;
+} */
+
+.productdetails .zoomslider .slick-track {
+    padding-left: 32px !important;
+}
+
+.productdetails .cont {
+    width: 90%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.productdetails .cont h2.hd {
+    line-height: 35px;
+}
+
+.productdetails .relatedpro {
+    width: 90%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.productdetails .cont h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.productdetails .verline {
+    width: 1px;
+    height: 15px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.productdetails .cont .rowarea {
+    padding: 20px 30px;
+}
+
+.productdetails .cont .rowarea .productzoom .badge {
+    right: 0px;
+}
+
+.productdetails .cont .rowarea .rattext {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+    padding-left: 2px;
+
+}
+
+.productdetails .cont .rowarea .detailsright {
+    position: relative;
+}
+
+.productdetails .cont .rowarea .btnbuy {
+    position: absolute !important;
+    bottom: -41px !important;
+    right: -68px !important;
+    color: #fff !important;
+    background: #18b803;
+    padding: 8px 35px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.productItem.detail {
+    display: flex;
+    flex-direction: column;
+    height: 400px !important;
+}
+
+.productItem.detail .butcart {
+    height: 61px;
+}
+
+.productdetails .cont .productSize {
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    transition: all 0.2s ease-in-out;
+}
+
+.productdetails .cont .productSize ul li {
+    margin-right: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.productdetails .cont .productSize a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 7px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-size: 12px;
+    transition: all 0.1s ease-in-out;
+}
+
+.productdetails .productSize ul.error li a {
+    border: 1px solid red !important;
+}
+
+.productdetails .cont .productSize ul li a.active {
+    background: var(--theme-color);
+    color: #fff;
+}
+
+.productdetails .reviews {
+    width: 90%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.detailspagetabs {
+    border-radius: 25px !important;
+    padding: 20px;
+    background: #fafafa;
+}
+
+.detailspagetabs table th,
+.detailspagetabs table td {
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.detailspagetabs table {
+    border-radius: 15px;
+}
+
+.detailspagetabs table td p {
+    margin-bottom: 0px;
+}
+
+.detailspagetabs .customtabs ul li {
+    margin-right: 30px;
+}
+
+.detailspagetabs .customtabs ul li button {
+    padding: 7px 25px !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    font-size: 16px !important;
+    text-transform: capitalize !important;
+    border-radius: 30px !important;
+    color: #000 !important;
+}
+
+.detailspagetabs .customtabs ul li button.active {
+    color: #fff !important;
+    background: var(--theme-color) !important;
+}
+
+.detailspagetabs .reviewscard {
+    margin-bottom: 25px !important;
+}
+
+.detailspagetabs .reviewscard .image {
+    width: 100px;
+}
+
+.detailspagetabs .reviewscard .rounded-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.detailspagetabs .reviewscard .rounded-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detailspagetabs .reviewscard .info {
+    width: 85%;
+}
+
+.detailspagetabs .table td p {
+    margin-bottom: 0;
+}
+
+.reviewform .form-group {
+    margin-bottom: 25px;
+}
+
+.reviewform .form-group .form-control {
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+.reviewform .form-group textarea.form-control {
+    height: 200px;
+    padding-top: 25px;
+}
+
+.reviewscard .info p {
+    font-size: 13px;
+    line-height: 22px;
+}

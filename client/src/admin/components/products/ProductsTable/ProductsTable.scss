@@ -1,0 +1,50 @@
+.productsdashheadarea {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .productsheadmui {
+        color: var(--text-color);
+        font-size: 28px;
+        width: 100%;
+        text-align: left;
+        font-weight: 700;
+    }
+
+    .productsheadmuibutton {
+        padding-left: 35px;
+        padding-right: 18px;
+        padding-top: 6px;
+        padding-bottom: 3px;
+        border-radius: 12px;
+        background-color: #475be8;
+        display: flex;
+        margin-right: 4px;
+        position: relative;
+
+        .titlebuttonpromui {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 600;
+            padding-left: 5px;
+            padding-top: 3px;
+        }
+
+        .iconpromuihead {
+            font-size: 27px;
+            top: -1px;
+            left: 9px;
+            color: var(--text-color);
+            position: absolute;
+        }
+
+    }
+}
+
+.prodeliconapi {
+
+    &:hover {
+        color: #122938;
+        font-size: 20px;
+    }
+}

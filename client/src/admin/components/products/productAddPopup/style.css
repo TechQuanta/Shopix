@@ -1,0 +1,21 @@
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    background-color: transparent;
+    /* height: 700px; */
+    z-index: 9999999999;
+}
+
+.producteditpopform::-webkit-scrollbar {
+    background: transparent;
+}
+
+.producteditpopform::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.UserProductPopupmain {
+    z-index: 999999;
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    border-radius: 17px;
+}

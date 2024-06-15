@@ -1,0 +1,239 @@
+.cartpage {
+    background-color: #f1f0f0cb;
+}
+
+.cartpage .cartb {
+    width: 95%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.cartpage .tablecart {
+    background: #f1f1f1;
+    border-radius: 12px;
+    padding: 10px 10px;
+}
+
+.cartpage .table thead {
+    background: #dad8d8 !important;
+    overflow: hidden;
+}
+
+.cartpage .table thead th {
+    border: 0px !important;
+}
+
+.cartpage .table thead th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.cartpage .table thead th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.cartpage .cartitemimgwrapper .imgwrapper {
+    width: 120px;
+    overflow: hidden;
+    height: 106px;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999999;
+    cursor: wait;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.cartpage .cartitemimgwrapper .imgwrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cartpage .cartitemimgwrapper .info a:hover {
+    text-decoration: none;
+}
+
+.cartitemimgwrapper .info h6 {
+    color: #000;
+    font-weight: bold;
+}
+
+.cartitemimgwrapper .info h6:hover {
+    color: var(--pink);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.cartitemimgwrapper {
+    width: 280px;
+}
+
+.cartitemimgwrapper .info h6 {
+    font-size: 15px;
+}
+
+.cartpage .table tbody td {
+    vertical-align: middle;
+    align-items: center;
+}
+
+.remove {
+    cursor: pointer;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.remove svg {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.remove svg:hover {
+    color: var(--pink);
+}
+
+.cartpage .table td,
+.cartpage .table th {
+    border-top: 0px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.cartpage table tbody tr:hover {
+    background: #dad8d852 !important;
+}
+
+.cartdetails {
+    border: 0px !important;
+    border-radius: 12px;
+    background: #f1f1f1;
+    justify-content: center;
+
+}
+
+.cartdetails h4 {
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding-bottom: 15px;
+}
+
+.cartdetails .line {
+    width: 80%;
+    height: 0.5px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    align-self: center;
+}
+
+.cartdetails .total {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.cartdetails .total span {
+    font-size: 18px;
+}
+
+.cartdetails .checkbut {
+    width: 100% !important;
+    padding: 10px 25px !important;
+    color: #fff !important;
+    background: #ed174a;
+    border-radius: 7px;
+    margin-top: 35px;
+    margin-bottom: 5px;
+}
+
+.couponarea {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.couponarea .coupon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.couponareacart {
+    display: flex;
+    align-items: center;
+}
+
+.couponareacart input {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding: 8px 15px;
+    width: 200px;
+    color: #000;
+    height: 45px;
+    font-size: 14px;
+    background: #f1f1f1;
+    border-radius: 10px !important;
+}
+
+.couponareacart button {
+    padding: 10px 20px !important;
+    color: #fff !important;
+    background: #53348c !important;
+    border-radius: 10px !important;
+}
+
+.couponareacart button:hover {
+    background: #ed174a !important;
+}
+
+.redt {
+    color: #ed174a !important;
+}
+
+.headwrappercart {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.couponarea .coupon input {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding: 8px 15px;
+    width: 200px;
+    color: #000;
+    height: 45px;
+    font-size: 14px;
+    background: #f1f1f1;
+    border-radius: 10px !important;
+
+}
+
+.couponarea .coupon button {
+    padding: 10px 20px !important;
+    color: #fff !important;
+    background: #53348c !important;
+    border-radius: 10px !important;
+}
+
+.couponarea .coupon button:hover {
+    background: #ed174a !important;
+}
+
+.cartdetails .checkbut:hover {
+    background: #53348c;
+}
+
+.text-red {
+    color: #ed174a !important;
+}
+
+.text-blue {
+    color: #53348c !important;
+}

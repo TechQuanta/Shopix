@@ -1,0 +1,482 @@
+@media (min-width: 1200px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1200px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.headerWrapper .top-strip {
+    padding: 8px 0px;
+}
+
+.headerWrapper .top-strip p {
+    color: var(--text-color);
+    font-size: 12px;
+}
+
+.headerWrapper .bg-purple {
+    background: var(--theme-color);
+}
+
+.headerWrapper.hide {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.headerWrapper .header {
+    width: 100%;
+    height: auto;
+    padding: 25px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.logoWrapper img {
+    width: 90%;
+}
+
+.logoWrapper .sopixlogotitle {
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-left: 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.headerWrapper .header .part2 .countrydrop {
+    width: 170px;
+    height: 60px;
+    min-width: 150px !important;
+    text-align: left;
+    justify-content: flex-start;
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding: 10px 15px;
+}
+
+.headerWrapper .header .part2 .countrydrop .label {
+    font-size: 12px !important;
+    text-transform: capitalize !important;
+    color: rgba(0, 0, 0, 0.5) !important;
+    line-height: 16px;
+}
+
+.headerWrapper .header .part2 .countrydrop .name {
+    font-size: 14px !important;
+    text-transform: capitalize !important;
+    color: var(--theme-color) !important;
+    font-weight: 700;
+    line-height: 16px;
+
+}
+
+.headerWrapper .header .part2 .countrydrop span.ml-auto svg {
+    opacity: 0.7;
+}
+
+.headersearch {
+    width: 53.5%;
+    height: 60px;
+    background: #f3f4f7;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: relative;
+}
+
+.btn-signin {
+    font-weight: 500 !important;
+    padding: 6px 15px !important;
+}
+
+.headersearch input {
+    background: transparent;
+    outline: none;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 40px;
+    border: 0;
+    padding: 0 20px;
+}
+
+.headersearch button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 99;
+    min-width: 40px !important;
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 50% !important;
+    color: #000;
+}
+
+.headersearch button svg {
+    font-size: 25px;
+}
+
+.header .part3 {
+    transition: all 0.2s ease-in-out;
+}
+
+header .part3 .circle {
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 50px;
+    width: 45px;
+    border-radius: 50%;
+    font-size: 29px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+header .part3 .circle svg {
+    font-size: 24px;
+}
+
+header .part3 .cardtab button {
+    background: #fff1ee;
+}
+
+header .part3 .cardtab button svg {
+    color: #ea2b07;
+}
+
+header .part3 .cardtab .price {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+
+.cardtab .count {
+    position: absolute;
+    top: -6px;
+    right: -4px;
+    background: #ea2b0f;
+    border-radius: 50%;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+}
+
+nav .allcattab {
+    background: var(--theme-color);
+    padding: 8px 15px;
+    width: 230px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+nav .navpart1 .catWrapper {
+    position: relative;
+}
+
+nav .navpart1 .catWrapper .sidebarnav {
+    width: 225px;
+    height: auto;
+    opacity: 0;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 15px 0px;
+    visibility: hidden;
+    z-index: 99999;
+    transition: all 0.3s ease-in-out;
+
+}
+
+nav .navpart1 .catWrapper .sidebarnav.open {
+    height: auto;
+    opacity: 1;
+    top: 130%;
+    visibility: inherit;
+}
+
+nav .navpart1 .catWrapper .sidebarnav ul li {
+    width: 100%;
+    list-style: none;
+    padding: 0px 15px;
+}
+
+nav .navpart1 .catWrapper .sidebarnav ul li button {
+    color: #000 !important;
+    width: 100% !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    justify-content: flex-start !important;
+    text-transform: capitalize !important;
+}
+
+nav .navpart1 .catWrapper .sidebarnav ul li button:hover {
+    background: transparent;
+}
+
+nav .allcattab:hover {
+    background: #2bbef9;
+}
+
+nav .allcattab * {
+    color: #fff;
+}
+
+nav .allcattab .text {
+    font-weight: 600;
+}
+
+nav .allcattab svg {
+    font-size: 20px;
+}
+
+nav .allcattab .icon1 svg {
+    font-size: 20px;
+}
+
+nav .allcattab .icon2 svg {
+    font-size: 18px;
+    padding-bottom: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+nav .allcattab .icon2.open svg {
+    transform: rotate(180deg);
+
+}
+
+nav .navpart2 ul {
+    margin-bottom: 0;
+}
+
+nav .navpart2 ul li a {
+    font-size: 15px;
+    font-weight: 525;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.9);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 5px;
+    transition: all 0.2s ease-in-out;
+    border-radius: 25px;
+}
+
+.disabled-link {
+    pointer-events: none;
+}
+
+.css-eqeipb-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    border-radius: 12px !important;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+    border-radius: 12px !important;
+}
+
+nav .navpart2 ul li a:hover {
+    color: var(--theme-color);
+    background: #f0faff;
+}
+
+nav .navpart2 ul li a svg {
+    font-size: 20px;
+}
+
+.headerWrapper .line {
+    width: 100%;
+    height: 1px;
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.headerWrapper {
+    transition: all 0.3s ease-in-out;
+}
+
+.headerWrapper .navigationwrapper.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999999999999;
+    background: #fff;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.headerWrapper .navigationwrapper.sticky .stickynav {
+    transition: all 0.3s ease-in-out;
+}
+
+.locationmodel .MuiPaper-elevation {
+    padding: 25px;
+}
+
+.locationmodel .title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.locationmodel .countrylist {
+    width: 100%;
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+.locationmodel .countrylist li {
+    list-style: none;
+    width: 100%;
+}
+
+.locationmodel .countrylist li button {
+    width: 100%;
+    text-transform: capitalize;
+    color: #000;
+    font-style: bold;
+    justify-content: flex-start;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.locationmodel .countrylist li button:hover {
+    background: #f1f1f1;
+}
+
+.locationmodel .countrylist li button.active {
+    background: var(--theme-color);
+    color: #fff;
+}
+
+.locationmodel .closedel {
+    position: absolute;
+    top: 6px;
+    right: 20px;
+    color: #000;
+    min-width: 40px;
+    width: 40px;
+    font-size: 20px;
+    height: 40px;
+}
+
+.locationmodel .closedel button svg {
+    font-size: 25px;
+    color: #000;
+    border-radius: 40%;
+
+}
+
+nav .navpart2 ul li {
+    position: relative;
+}
+
+nav .navpart2 ul li .submenu {
+    position: absolute;
+    margin-top: 10px;
+    top: -50%;
+    left: 0px;
+    min-width: 200px;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99999;
+    border-radius: 12px !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.part3 .usermenu {
+    position: relative;
+}
+
+.part3 .usermenu .submenuuser {
+    position: absolute;
+    margin-top: 10px;
+    top: -50%;
+    left: -60px;
+    min-width: 200px;
+    background: #fff;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    padding: 10px;
+    border-radius: 12px;
+    flex-direction: column;
+    visibility: hidden;
+    z-index: 99999;
+    transition: all 0.2s ease-in-out;
+}
+
+.part3 .usermenu .submenuuser button {
+    color: #000 !important;
+    width: 100% !important;
+}
+
+nav .navpart2 ul li .submenu a {
+    display: block;
+    width: 100%;
+}
+
+nav .navpart2 ul li .submenu button {
+    color: #000 !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    border-radius: 0px !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    transition: all 0.2s ease-in-out !important;
+    text-align: left !important;
+}
+
+nav .navpart2 ul li .submenu button svg {
+    transition: all 0.2s ease-in-out;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+nav .navpart2 ul li:hover .submenu {
+    opacity: 1;
+    visibility: inherit;
+    top: 100%;
+}
+
+nav .navpart2 ul li:hover .navheaangdown {
+    transform: rotate(180deg);
+}
+
+.part3 .usermenu:hover .submenuuser {
+    opacity: 1;
+    visibility: inherit;
+    top: 100%;
+}
