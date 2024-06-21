@@ -1,4 +1,4 @@
-const backendDomin = "http://localhost:3000"
+const backendDomin = "https://shopix-bd.onrender.com/"
 
 const SummaryApi = {
     signUP: {
