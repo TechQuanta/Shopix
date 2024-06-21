@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   proxy: {
     "/api": {
-      target: "http://localhost:5000",
+      target: "https://shopix-bd.onrender.com",
       changeOrigin: true,
       secure: false,
     },
