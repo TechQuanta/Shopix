@@ -88,7 +88,6 @@ const ProductItem = ({ itemView, products, height, width, css }) => {
     }
 
     const checkLiked = async (id) => {
-        if (User?._id) {
             const fetchData = await fetch(SummaryApi.getMyList.url + `?userid=${User?._id}&productid=${id}`, {
                 method: SummaryApi.getMyList.method,
                 headers: { "Content-Type": "application/json" },
@@ -102,9 +101,6 @@ const ProductItem = ({ itemView, products, height, width, css }) => {
                     setLiked(true);
                 }
             }
-        } else {
-            toast.info("User must be logged In to continue.")
-        }
     }
     return (
 
