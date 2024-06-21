@@ -189,7 +189,7 @@ const Listing = () => {
         setEndpoint(endpointt)
         setIsLoading(true)
 
-        const fetchData = await fetch("http://localhost:5000/api/product/filterproduct" + `?minPrice=${value[0]}&maxPrice=${value[1]}&subcat=${catv}`, {
+        const fetchData = await fetch(SummaryApi.filterProduct.url + `?minPrice=${value[0]}&maxPrice=${value[1]}&subcat=${catv}`, {
             method: 'GET',
             headers: { "Content-Type": "application/json" },
         },
@@ -217,7 +217,7 @@ const Listing = () => {
         setIsLoading(true)
         setEndpoint(endpointt)
 
-        const fetchData = await fetch("http://localhost:5000/api/product/filterproduct" + `?brandname=${brand}&subcat=${catv}`, {
+        const fetchData = await fetch(SummaryApi.filterProduct.url + `?brandname=${brand}&subcat=${catv}`, {
             method: 'GET',
             headers: { "Content-Type": "application/json" },
         },
