@@ -22,7 +22,7 @@ const __dirname = path.resolve();
 connectDB();
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5000"],
+    origin: ["https://shopix-bd.onrender.com/", "https://shopix-bd.onrender.com/"],
     methods: ["GET", "POST", "PUT", "DELETE"]
 }))
 
