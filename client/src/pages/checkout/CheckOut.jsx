@@ -186,6 +186,8 @@ const CheckOut = () => {
     }
 
     const createOneOrder = async (payload) => {
+          setIsLoading(true)
+        context.setProgress(19)
         const fetchData = await fetch(SummaryApi.createOneOrder.url, {
             method: SummaryApi.createOneOrder.method,
             headers: { "Content-Type": "application/json" },
@@ -196,11 +198,19 @@ const CheckOut = () => {
         const dataResponse = await fetchData.json()
 
         if (dataResponse.success) {
+              setTimeout(() => {
+                context.setProgress(100)
+                setIsLoading(false)
+            }, 1000)
             navigate('/checkout/success')
             updateOrderCount(payload?.data?.userid);
         }
 
         if (dataResponse.error) {
+              setTimeout(() => {
+                context.setProgress(100)
+                setIsLoading(false)
+            }, 1000)
             toast.error(dataResponse.message)
         }
     }
