@@ -16,7 +16,7 @@ const TABLE_HEADS = [
     "Email ID",
     "gender",
     "Role",
-    "Orders Count(Total $)",
+    "Orders Count",
     "Action",
 ];
 
@@ -26,6 +26,7 @@ const UsersTable = () => {
     const [totalPages, setTotalPages] = useState()
 
     const [allUsers, setAllUsers] = useState()
+    const [totalPosts, settotalPosts] = useState()
 
     const context = useContext(ValuesContext);
 
@@ -40,8 +41,9 @@ const UsersTable = () => {
         const dataResponse = await fetchData.json()
 
         if (dataResponse?.success) {
-            // setAllUsers(dataResponse?.data)
             setAllUsers(dataResponse?.data)
+            setTotalPages(dataResponse?.totalPages);
+            settotalPosts(dataResponse?.totalPosts);
             context.setProgress(100)
         }
 
@@ -49,7 +51,6 @@ const UsersTable = () => {
             toast.error(dataResponse?.message)
             context.setProgress(100)
         }
-        console.log(allUsers)
     }
 
     useEffect(() => {
@@ -109,9 +110,9 @@ const UsersTable = () => {
                                             <span className="dt-status-text">{dataItem?.role}</span>
                                         </div>
                                     </td>
-                                    <td>{dataItem?.orders.length}</td>
+                                    <td>{dataItem?.orders}</td>
                                     <td className="dt-cell-action">
-                                        <UsersTableAction user={dataItem} />
+                                        <UsersTableAction user={dataItem} fetchAllUsers={fetchAllUsers} />
                                     </td>
                                 </tr>
                             );
@@ -121,7 +122,7 @@ const UsersTable = () => {
             </div>
             <div className="categorypagination">
                 <span>
-                    <p>showing <b>5</b> of <b>{allUsers?.length}</b> results</p>
+                    <p>showing <b>{allUsers?.length}</b> of <b>{totalPosts}</b> results</p>
                 </span>
                 <Pagination count={totalPages} variant="outlined" showFirstButton showLastButton onChange={handleChange} />
             </div>

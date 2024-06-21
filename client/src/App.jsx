@@ -19,7 +19,6 @@ import Dashboard from './admin/Adminpanel/dashboard/DashboardScreen';
 import Users from './admin/Adminpanel/Users/Users';
 import Products from './admin/Adminpanel/Products/Products';
 import Orders from './admin/Adminpanel/orders/Orders';
-import Transactions from './admin/Adminpanel/transactions/Transactions';
 import Profile from './admin/Adminpanel/profile/Profile';
 import BaseLayout from './admin/layout/BaseLayout';
 import { useDashboardTheme } from './context/ThemeContext';
@@ -31,6 +30,13 @@ import SummaryApi from './utils/apiUrls';
 import userAtom from './atom (global state)/userAtom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import cartAtom from './atom (global state)/cartAtom';
+import ListingCat from './pages/listingcategory/ListingCat';
+import WishList from './pages/wishlist/WishList';
+import CheckOut from './pages/checkout/CheckOut';
+import OrderSuccess from './pages/orderSuccess/OrderSuccess';
+import UserOrders from './pages/orders/UserOrders';
+import Search from './pages/search/Search';
+import ScrollButton from './components/scrollbutton/ScrollButton';
 
 export const ValuesContext = createContext();
 
@@ -160,20 +166,26 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/authenticate" element={<Authentication />} />
                 <Route path="/subcat/:name" element={<Listing />} />
+                <Route path="/category/:catname" element={<ListingCat />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/cart" element={<Cart />} />
-                {/* <Route path="/product/:id" element={<ProductDetails />} /> */}
-                <Route element={<BaseLayout />}>
+                <Route path="/wishlist" element={<WishList />} />
+                <Route path="/checkout" element={<CheckOut />} />
+                <Route path="/checkout/success" element={<OrderSuccess />} />
+                <Route path="/orders" element={<UserOrders />} />
+                <Route path="/search/:query" element={<Search />} />
 
+                <Route element={<BaseLayout />}>
                   <Route path="/admin/dashboard" element={<Dashboard />} />
                   <Route path="/admin/users" element={<Users />} />
                   <Route path="/admin/products" element={<Products />} />
                   <Route path="/admin/orders" element={<Orders />} />
-                  <Route path="/admin/transactions" element={<Transactions />} />
                   <Route path="/admin/profile" element={<Profile />} />
                   <Route path="/admin/category" element={<Category />} />
                 </Route>
+
               </Routes>
+              <ScrollButton />
               <Footer />
             </BrowserRouter>
           </AuthContextProvider>

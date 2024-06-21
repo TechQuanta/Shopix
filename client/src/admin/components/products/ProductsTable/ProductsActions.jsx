@@ -10,7 +10,7 @@ import SummaryApi from '../../../../utils/apiUrls';
 import ProductEditPopup from './../producteditpopup/ProductEditPopup';
 import { ValuesContext } from './../../../../App';
 
-const ProductsActions = ({ params }) => {
+const ProductsActions = ({ params, fetchAllProducts }) => {
   const [productEditShow, setProductEditShow] = useState(false);
   const id = params?.id;
 
@@ -77,7 +77,7 @@ const ProductsActions = ({ params }) => {
           <MdDelete size={20} />
         </Fab>
       </Box>
-      <ProductEditPopup show={productEditShow} setShow={setProductEditShow} product={params.row} />
+      <ProductEditPopup show={productEditShow} setShow={setProductEditShow} product={params.row} fetchAllProducts={fetchAllProducts} />
     </>
   );
 };

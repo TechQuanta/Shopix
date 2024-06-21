@@ -72,7 +72,7 @@ const ProductsTable = () => {
             flex: 1,
             type: 'actions',
             renderCell: (params) => (
-                <ProductsActions {...{ params }} />
+                <ProductsActions {...{ params }} fetchAllProducts={fetchAllProducts} />
             ),
         },
     ];

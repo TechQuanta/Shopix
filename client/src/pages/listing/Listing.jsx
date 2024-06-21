@@ -15,11 +15,14 @@ import { Button } from '@mui/material';
 import ProductItem from './../../components/productitem/ProductItem';
 import { toast } from 'react-toastify';
 import SummaryApi from '../../utils/apiUrls';
+import Spinner from '../../components/spinner/Spinner';
+import NewsLetter from '../../components/newsletter/NewsLetter';
 
 const Listing = () => {
     const [productView, setProductView] = useState('four');
     const [productCount, setProductCount] = useState(12);
     const [catv, setCatv] = useState()
+    const [isLoading, setIsLoading] = useState(false);
 
     const { name } = useParams()
 
@@ -52,6 +55,7 @@ const Listing = () => {
 
     const getProductData = async () => {
         setCatv(name)
+        setIsLoading(true)
         const fetchData = await fetch(SummaryApi.categoryProduct.url + name, {
             method: SummaryApi.categoryProduct.method,
             headers: { "Content-Type": "application/json" },
@@ -62,10 +66,16 @@ const Listing = () => {
 
         if (dataResponse?.success) {
             setProductData(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
 
@@ -78,6 +88,7 @@ const Listing = () => {
 
     const filterData = async (cat, endpointt) => {
         setCatv(cat)
+        setIsLoading(true)
         setEndpoint(endpointt)
         const fetchData = await fetch(SummaryApi.categoryProduct.url + cat, {
             method: SummaryApi.categoryProduct.method,
@@ -89,10 +100,16 @@ const Listing = () => {
 
         if (dataResponse?.success) {
             setProductData(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
 
@@ -116,6 +133,7 @@ const Listing = () => {
     };
 
     const filterByCategory = async (cat, endpointt) => {
+        setIsLoading(true)
         setCatv(cat)
         setEndpoint(endpointt)
         const fetchData = await fetch(SummaryApi.catProductPage.url + `?category=${cat}`, {
@@ -129,13 +147,20 @@ const Listing = () => {
         if (dataResponse?.success) {
             setProductData(dataResponse?.data);
             setTotalPages(dataResponse?.totalPages);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
     const handleChange = async (event, value) => {
+        setIsLoading(true)
 
         const fetchData = await fetch(SummaryApi.catProductPage.url + `?category=${catv}&page=${value}`, {
             method: SummaryApi.catProductPage.method,
@@ -147,15 +172,22 @@ const Listing = () => {
 
         if (dataResponse.success) {
             setProductData(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     };
 
     const filterByPrice = async (value, cat, endpointt) => {
         setEndpoint(endpointt)
+        setIsLoading(true)
 
         const fetchData = await fetch("http://localhost:5000/api/product/filterproduct" + `?minPrice=${value[0]}&maxPrice=${value[1]}&subcat=${catv}`, {
             method: 'GET',
@@ -167,15 +199,22 @@ const Listing = () => {
 
         if (dataResponse?.success) {
             setProductData(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
 
     const handleBrandFilter = async (brand, endpointt) => {
         setCatv(catv)
+        setIsLoading(true)
         setEndpoint(endpointt)
 
         const fetchData = await fetch("http://localhost:5000/api/product/filterproduct" + `?brandname=${brand}&subcat=${catv}`, {
@@ -188,10 +227,16 @@ const Listing = () => {
 
         if (dataResponse?.success) {
             setProductData(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
     return (
@@ -232,11 +277,20 @@ const Listing = () => {
                                 </div>
                             </div>
                             <div className={`productlisting mb-4 ${productView}`}>
-                                {productData?.map((item, index) => {
+                                {productData && productData?.map((item, index) => {
                                     return (
                                         <ProductItem key={index} itemView={productView} products={item} />
                                     )
                                 })}
+
+                                {productData?.length <= 0 && isLoading === false && <div className='noprofoundinselemain'>
+                                    <h1>Products unavailable, Add one to see here.</h1>
+                                    <Button onClick={() => navigate('/admin/products')}>Add One</Button>
+                                </div>}
+
+                                {isLoading === true && <div className='spinerrauto'>
+                                    <Spinner />
+                                </div>}
 
                             </div>
                             <hr />
@@ -247,6 +301,10 @@ const Listing = () => {
                     </div>
                 </div>
             </section>
+            <div className="pb-4">
+                <NewsLetter />
+            </div>
+            {isLoading === true && <div className='loading'></div>}
         </>
     )
 }

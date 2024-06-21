@@ -122,7 +122,7 @@ const CategoryArea = () => {
                                         <td>{dataItem?.name}</td>
                                         <td>{dataItem?.color}</td>
                                         <td className="dt-cell-action">
-                                            <CategoryTableAction category={dataItem} />
+                                            <CategoryTableAction category={dataItem} fetchCategories={fetchCategories} />
                                         </td>
                                     </tr>
                                 );

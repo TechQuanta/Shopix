@@ -25,12 +25,20 @@ const SummaryApi = {
         url: `${backendDomin}/api/user/allusers`,
         method: 'GET'
     },
+    allUserNoPage: {
+        url: `${backendDomin}/api/user/allusersnopage`,
+        method: 'GET'
+    },
     deleteUser: {
         url: `${backendDomin}/api/user/deleteuser`,
         method: 'POST'
     },
     updateUser: {
         url: `${backendDomin}/api/user/updateuser`,
+        method: "POST"
+    },
+    updateUserOrderCount: {
+        url: `${backendDomin}/api/user/updateUserOrderCount`,
         method: "POST"
     },
     uploadProduct: {
@@ -145,6 +153,10 @@ const SummaryApi = {
         url: `${backendDomin}/api/product/filterproduct`,
         method: 'get'
     },
+    getSearchedProducts: {
+        url: `${backendDomin}/api/product/getSearchedProducts`,
+        method: 'get'
+    },
     getallsubcategoriess: {
         url: `${backendDomin}/api/subcategory/getsubcategories`,
         method: 'get'
@@ -172,7 +184,75 @@ const SummaryApi = {
     subcategoriesbyname: {
         url: `${backendDomin}/api/subcategory/getsubcategories`,
         method: 'get'
-    }
+    },
+    getReviews: {
+        url: `${backendDomin}/api/productReview/getReviews`,
+        method: 'get'
+    },
+    getReviewsById: {
+        url: `${backendDomin}/api/productReview/getReviewsById`,
+        method: 'get'
+    },
+    getReviewsByProduct: {
+        url: `${backendDomin}/api/productReview/getReviewsByProduct`,
+        method: 'get'
+    },
+    createReview: {
+        url: `${backendDomin}/api/productReview/createReview`,
+        method: 'post'
+    },
+    deleteReview: {
+        url: `${backendDomin}/api/productReview/deleteReview`,
+        method: 'delete'
+    },
+    updateReview: {
+        url: `${backendDomin}/api/productReview/updateReview/`,
+        method: 'put'
+    },
+    getMyList: {
+        url: `${backendDomin}/api/list/getMyList`,
+        method: 'get'
+    },
+    getMyListByUser: {
+        url: `${backendDomin}/api/list/getMyListByUser`,
+        method: 'get'
+    },
+    createMYListItem: {
+        url: `${backendDomin}/api/list/createOneList`,
+        method: 'post'
+    },
+    deleteMyListItem: {
+        url: `${backendDomin}/api/list/deleteMyList/`,
+        method: 'delete'
+    },
+    getOrders: {
+        url: `${backendDomin}/api/order/getOrders`,
+        method: 'get'
+    },
+    getOrdersLatest: {
+        url: `${backendDomin}/api/order/getOrdersLatest`,
+        method: 'get'
+    },
+    getOrdersByUser: {
+        url: `${backendDomin}/api/order/getOrdersByUser`,
+        method: 'get'
+    },
+    createOneOrder: {
+        url: `${backendDomin}/api/order/createOneOrder`,
+        method: 'post'
+    },
+    createOneOrderCash: {
+        url: `${backendDomin}/api/order/createOneOrderCash`,
+        method: 'post'
+    },
+    deleteOrder: {
+        url: `${backendDomin}/api/order/deleteOrder/`,
+        method: 'delete'
+    },
+    updateOrder: {
+        url: `${backendDomin}/api/order/updateMyList/`,
+        method: 'put'
+    },
 }
 
 

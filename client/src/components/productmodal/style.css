@@ -63,6 +63,10 @@
     width: 100%;
 }
 
+.productmodal {
+    z-index: 9999999999999999999999999;
+}
+
 .productzoom .item .iiz__img {
     width: 100%;
     height: 300px;
@@ -174,6 +178,7 @@
 .quantitydrop input {
     width: 30px;
     border: 0px;
+    color: var(--text-color);
     background: transparent;
     outline: none;
     text-align: center;
@@ -187,6 +192,7 @@
 
 .btn-sml svg {
     font-size: 20px !important;
+    color: var(--theme-color);
 }
 
 .productmodal .actions button {
@@ -198,6 +204,7 @@
 
 .productmodal .actions button svg {
     font-size: 15px !important;
+    color: var(--theme-color);
 }
 
 .productzoom .badge {

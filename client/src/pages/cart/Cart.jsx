@@ -188,7 +188,7 @@ const Cart = () => {
                         <div className="col-md-4">
                             <div className="card shadow p-3 cartdetails">
                                 <h4>Cart Totals</h4>
-                                <div className="d-flex align-items-center mb-3">
+                                <div className="d-flex align-items-center mb-3 mt-2">
                                     <span>SubTotal:</span>
                                     <span className='ml-auto text-red font-weight-bold'>Rs.{subTotal}</span>
                                 </div>
@@ -205,7 +205,7 @@ const Cart = () => {
                                     <span>Total:</span>
                                     <span className='ml-auto font-weight-bold'>Rs.{total}</span>
                                 </div>
-                                <Button className='btn-bg checkbut'>Proceed To Checkout</Button>
+                                <Link to={'/checkout'}>  <Button className='btn-bg checkbut'>Proceed To Checkout</Button></Link>
                             </div>
                             <div className="cartdetails">
 

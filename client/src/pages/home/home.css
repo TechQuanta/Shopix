@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.homepage {
+    background: var(--black);
+}
+
 .homebannersection .swiper {
     overflow: inherit !important;
 }
@@ -40,7 +44,7 @@
     width: 100%;
     height: 100%;
     border-radius: 12px;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
 }
 
@@ -100,6 +104,7 @@
 .productrow .hd {
     font-size: 25px;
     font-weight: 500;
+    color: var(--text-color);
 }
 
 .viewallbtn {
@@ -125,10 +130,9 @@
     overflow: hidden;
     border-radius: 12px;
     transition: all 0.2s ease-in-out;
-    z-index: 99;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: #f1f1f1;
+    background: var(--pitem);
     display: flex;
     flex-direction: column;
 }
@@ -148,6 +152,14 @@
     left: 10px;
     z-index: 999;
     padding: 5px 7px;
+}
+
+.redh {
+    color: var(--text-color);
+}
+
+.redh:hover {
+    color: #ed174a !important;
 }
 
 .productItem .imgwrapper {
@@ -171,8 +183,13 @@
 
 .productItem .info h4 {
     font-size: 16px;
-    font-weight: 600;
-    color: #000 !important;
+    font-weight: 500;
+    color: var(--text-color) !important;
+}
+
+.productItem .css-1c99szj-MuiRating-icon {
+    color: var(--text-color) !important;
+    font-weight: 400 !important;
 }
 
 .productItem .info {
@@ -182,9 +199,24 @@
 
 .info .oldprice {
     font-size: 16px;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.2);
+    color: var(--oldprice);
     text-decoration: line-through;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+    color: var(--text-color) !important;
+}
+
+.productlist3 .info h3 {
+    color: var(--text-color) !important;
+}
+
+.couponbanner span {
+    color: var(--text-color) !important;
+}
+
+.css-ptiqhd-MuiSvgIcon-root {
+    color: var(--text-color) !important;
 }
 
 .info .oldprice.lg {
@@ -234,6 +266,14 @@
     opacity: 1;
     visibility: inherit;
     right: 15px;
+}
+
+.productItem:hover .actions button.liked {
+    background: var(--theme-color) !important;
+}
+
+.productItem:hover .actions button.liked svg {
+    color: #fff;
 }
 
 .slectseealljdf {
@@ -358,8 +398,7 @@
 }
 
 .productItem:hover {
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-    z-index: 9999;
+    box-shadow: var(--shadow3);
 }
 
 .productItem .butcart2 {
@@ -436,7 +475,7 @@
 .swiper-nav-btns .navbuttons {
     position: relative;
     color: rgba(0, 0, 0, 0.2) !important;
-    background: #fff !important;
+    background: var(--arrow) !important;
     border-radius: 80% !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     height: 47px !important;
@@ -489,6 +528,7 @@
     font-size: 22px;
     font-weight: 600;
     padding-top: 0;
+    color: var(--text-color);
 }
 
 .bannersec {
@@ -497,7 +537,7 @@
 
 .productrow2 {
     flex-wrap: wrap;
-    gap: 9px;
+    gap: 4px;
 }
 
 .productrow2 .productItem {

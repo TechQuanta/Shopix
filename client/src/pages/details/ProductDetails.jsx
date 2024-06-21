@@ -17,12 +17,15 @@ import RecommendedProducts from './recommendedproducts/RecommendedProducts';
 import { ValuesContext } from '../../App';
 import userAtom from '../../atom (global state)/userAtom';
 import { useRecoilValue } from 'recoil';
+import { format } from "date-fns";
+import { MdDeleteForever } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
 
 const ProductDetails = () => {
     const context = useContext(ValuesContext)
     const [activeSize, setActiveSize] = useState(null);
     const [activeRam, setActiveRam] = useState(null);
-    const [activetabs, setActiveTabs] = useState(0);
+    const [activetabs, setActiveTabs] = useState(4.5);
     const [productData, setProductdata] = useState();
     const [rating, setRating] = useState(0);
     const [discount, setDiscount] = useState();
@@ -30,7 +33,11 @@ const ProductDetails = () => {
     const User = useRecoilValue(userAtom);
     const [productQuantity, setProductQuantity] = useState()
     const [tabError, setTabError] = useState(false);
-
+    const [review, setReview] = useState();
+    const [cusName, setCusName] = useState();
+    const [cusRating, setCusRating] = useState();
+    const [liked, setLiked] = useState(false);
+    const [trigger, setTrigger] = useState(false);
     const { id } = useParams();
 
     const isActiveSize = (index) => {
@@ -42,6 +49,8 @@ const ProductDetails = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
         getData();
+        getReviewData(id);
+        checkLiked(id);
     }, [id, location])
 
     useEffect(() => {
@@ -49,6 +58,8 @@ const ProductDetails = () => {
 
         const disPercent = (discount / productData?.price) * 100;
         setDiscount(disPercent.toString().substr(0, 4));
+
+        const rat = productData?.ratings > 0 && productData?.ratings
     }, [productData])
 
     const getData = async () => {
@@ -62,6 +73,7 @@ const ProductDetails = () => {
 
         if (dataResponse?.success) {
             setProductdata(dataResponse?.data);
+            checkLiked(id);
         }
 
         if (dataResponse.error) {
@@ -84,31 +96,161 @@ const ProductDetails = () => {
     }
 
     const addToCart = (data) => {
-        if (activeSize !== null) {
-            cartFields.producttitle = productData?.name
-            cartFields.image = productData?.images[0]
-            cartFields.price = productData?.sellingprice
-            cartFields.quantity = productQuantity
-            cartFields.subtotal = parseInt(productData?.sellingprice * productQuantity)
-            cartFields.productid = productData?._id
-            cartFields.userid = User?._id
-            context.addToCart(cartFields);
-        } else if (activeRam !== null) {
-            cartFields.producttitle = productData?.name
-            cartFields.image = productData?.images[0]
-            cartFields.price = productData?.sellingprice
-            cartFields.quantity = productQuantity
-            cartFields.subtotal = parseInt(productData?.sellingprice * productQuantity)
-            cartFields.productid = productData?._id
-            cartFields.userid = User?._id
-            context.addToCart(cartFields);
+        if (User?._id) {
+            if (activeSize !== null) {
+                cartFields.producttitle = productData?.name
+                cartFields.image = productData?.images[0]
+                cartFields.price = productData?.sellingprice
+                cartFields.quantity = productQuantity
+                cartFields.subtotal = parseInt(productData?.sellingprice * productQuantity)
+                cartFields.productid = productData?._id
+                cartFields.userid = User?._id
+                context.addToCart(cartFields);
+            } else if (activeRam !== null) {
+                cartFields.producttitle = productData?.name
+                cartFields.image = productData?.images[0]
+                cartFields.price = productData?.sellingprice
+                cartFields.quantity = productQuantity
+                cartFields.subtotal = parseInt(productData?.sellingprice * productQuantity)
+                cartFields.productid = productData?._id
+                cartFields.userid = User?._id
+                context.addToCart(cartFields);
+            } else {
+                setTabError(true);
+            }
         } else {
-            setTabError(true);
+            toast.info("User must be logged In to continue.")
         }
     }
 
     const selectedItem = async (item, quantity) => {
 
+    }
+    const [loading, setLoading] = useState(false);
+    const [reviewsData, setReviewsData] = useState();
+
+    const getReviewData = async (id) => {
+        const fetchData = await fetch(SummaryApi.getReviewsByProduct.url + `?productid=${id}`, {
+            method: SummaryApi.getReviewsByProduct.method,
+            headers: { "Content-Type": "application/json" },
+        },
+        );
+
+        const dataResponse = await fetchData.json()
+
+        if (dataResponse?.success) {
+            setReviewsData(dataResponse?.data);
+        }
+
+        if (dataResponse.error) {
+            toast.error(dataResponse.message)
+        }
+    }
+
+    const addReview = async () => {
+        if (User?._id) {
+            setLoading(true)
+            const fetchData = await fetch(SummaryApi.createReview.url, {
+                method: SummaryApi.createReview.method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ productid: productData?._id, customername: cusName + `(${User?.username})`, review: review, customerrating: cusRating, customerid: User?._id, customerimage: User?.profilePic }),
+            },
+            );
+
+            const dataResponse = await fetchData.json()
+
+            if (dataResponse.success) {
+                toast.success(`Review Posted Successfully.`)
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+                getReviewData();
+                setReview("")
+                setCusRating("")
+                setCusName("")
+            }
+
+            if (dataResponse.error) {
+                toast.error(dataResponse.message)
+                setTimeout(() => {
+                    setLoading(false)
+                }, 1000)
+                getReviewData();
+            } else {
+                toast.info("User must be logged In to continue.")
+            }
+        }
+    }
+
+    const deleteReview = async (id) => {
+        setLoading(true)
+        const fetchData = await fetch(SummaryApi.deleteReview.url + `?id=${id}`, {
+            method: SummaryApi.deleteReview.method,
+            headers: { "Content-Type": "application/json" },
+        },
+        );
+
+        const dataResponse = await fetchData.json()
+
+        if (dataResponse?.success) {
+            toast.success("Review Deleted Successfully!");
+            setTimeout(() => {
+                setLoading(false)
+                getReviewData();
+            }, 1000)
+        }
+
+        if (dataResponse.error) {
+            toast.error(dataResponse.message)
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000)
+        }
+    }
+
+    const addToMyList = async (id) => {
+        if (User?._id) {
+            const fetchData = await fetch(SummaryApi.createMYListItem.url, {
+                method: SummaryApi.createMYListItem.method,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ productid: id, userid: User?._id, producttitle: productData?.name, productimage: productData?.images[0], productprice: productData?.sellingprice }),
+            },
+            );
+
+            const dataResponse = await fetchData.json()
+
+            if (dataResponse?.success) {
+                setTrigger(true)
+                checkLiked(id)
+                toast.success("Product Added to WishList Successfully.")
+            }
+
+            if (dataResponse.error) {
+                toast.info(dataResponse.message)
+            }
+        } else {
+            toast.info("User must be logged In to continue.")
+        }
+    }
+
+    const checkLiked = async (id) => {
+        if (User?._id) {
+            const fetchData = await fetch(SummaryApi.getMyList.url + `?userid=${User?._id}&productid=${id}`, {
+                method: SummaryApi.getMyList.method,
+                headers: { "Content-Type": "application/json" },
+            },
+            );
+
+            const dataResponse = await fetchData.json()
+
+            if (dataResponse?.success) {
+                if (dataResponse?.data?.length !== 0) {
+                    setLiked(true);
+                }
+            }
+        } else {
+            toast.info("User must be logged In to continue.")
+        }
     }
 
     return (
@@ -136,7 +278,7 @@ const ProductDetails = () => {
                             <span className='rattext mb-5'>Rating:</span>
 
                             <span className="rating d-flex align-items-center mt-1">
-                                <Rating name="read-only" value={productData?.ratings?.length <= 0 ? 0 : rating} readOnly size="large" precision={0.5} />
+                                <Rating name="read-only" value={4.5} readOnly size="large" precision={0.5} />
                             </span>
 
                             <div className="d-flex align-items-center info mb-3 mt-3" >
@@ -170,7 +312,7 @@ const ProductDetails = () => {
                                 <Button onClick={() => addToCart(productData)} className='btn-blue btn-lg btn-big btn-round ml-3 text-capitalize'><FaCartShopping /> &nbsp; {context.addingInCart === true ? 'Adding...' : 'Add To Cart'}</Button>
                             </div>
                             <div className="d-flex align-items-center mt-5 actions">
-                                <Button variant='outlined' className='btn-round btn-sml'><FaRegHeart /> &nbsp; ADD TO WATCHLIST</Button>
+                                <Button onClick={() => addToMyList(productData?._id)} variant='outlined' className='btn-round btn-sml'>{liked ? <FaHeart /> : <FaRegHeart />} &nbsp; ADD TO WATCHLIST</Button>
                                 <Button variant='outlined' className='btn-round btn-sml ml-3'><DiGitCompare /> &nbsp; Campare</Button>
                             </div>
                             <ul className="list list-inline mt-5">
@@ -191,7 +333,6 @@ const ProductDetails = () => {
                                     </div>
                                 </li>
                             </ul>
-                            <Button variant='outlined' className='btn-round btnbuy'> Buy Now</Button>
                         </div>
                     </div>
                 </div>
@@ -212,9 +353,11 @@ const ProductDetails = () => {
                                 <li className='list-inline-item'>
                                     <Button className={`${activetabs === 2 && 'active'}`} onClick={() => {
                                         setActiveTabs(2)
+                                        getReviewData(id)
                                     }}>Reviews</Button>
                                 </li>
                             </ul>
+                            <hr />
                             <br />
                             {activetabs === 0 &&
                                 <div className="tabcontent">
@@ -302,47 +445,53 @@ const ProductDetails = () => {
                                 <div className='tabcontent'>
                                     <div className="row">
                                         <div className="col-md-8">
-                                            <h3>Customer questions & answers</h3>
+                                            <h3>Customer Reviews :</h3>
                                             <br />
-                                            <div className="card p-4 reviewscard flex-row">
-                                                <div className="image">
-                                                    <div className="rounded-circle">
-                                                        <img src="" alt="" />
-                                                    </div>
-                                                    <span className='text-g d-block text-center font-weight-bold'>Itopsbalram</span>
-                                                </div>
-                                                <div className="info pl-5">
-                                                    <div className="d-flex align-items-center w-100">
-                                                        <h5 className="text-light">12:08:2002</h5>
-                                                        <div className="ml-auto">
-                                                            <Rating name='half-rating-read' value={4.5} precision={0.5} readOnly />
+                                            {reviewsData?.length > 0 && reviewsData?.map((item, index) => {
+                                                return (
+                                                    <div key={index} className="card p-3 pl-2 reviewscard flex-row">
+                                                        <div className="image">
+                                                            <div className="rounded-circle">
+                                                                <img src={item?.customerimage} alt="" />
+                                                            </div>
                                                         </div>
+                                                        <div className="info">
+                                                            <div className="d-flex align-items-center w-100">
+                                                                <h5 className="text-light">{format(new Date(item?.createdAt), 'dd/MM/yyyy')}</h5>
+                                                                <div className="ml-auto">
+                                                                    <Rating name='half-rating-read' value={item?.customerrating} precision={0.5} readOnly />
+                                                                </div>
+                                                            </div>
+                                                            <span className='text-g d-block font-weight-bold'>{item?.customername}</span>
+                                                            <p>{item?.review}</p>
+                                                        </div>
+                                                        {User?._id === item?.customerid && <Button className='delrevb' onClick={() => deleteReview(item?._id)}><MdDeleteForever /></Button>}
                                                     </div>
-                                                    <p>Quisque varius diam vel metus mattis, id aliquam diam rhoncus. Proin vitae magna in dui finibus malesuada et at nulla. Morbi elit ex, viverra vitae ante vel, blandit feugiat ligula. Fusce fermentum iaculis nibh, at sodales leo maximus a. Nullam ultricies sodales nunc, in pellentesque lorem mattis quis. Cras imperdiet est in nunc tristique lacinia. Nullam aliquam mauris eu accumsan tincidunt. Suspendisse velit ex, aliquet vel ornare vel, dignissim a tortor.</p>
-                                                </div>
-                                            </div>
-                                            <br className='res-hide' />
-                                            <br className='res-hide' />
-                                            <form className='reviewform'>
+                                                )
+                                            })}
+                                            {reviewsData?.length <= 0 && <div className='noprofoundinselemain'>
+                                                <h1>Reviews unavailable, Add one to see here.</h1>
+                                            </div>}
+                                            <hr />
+                                            <form className='reviewform' onSubmit={(e) => addReview(e)}>
                                                 <h4>Add a review</h4>
-                                                <div className="form-group">
-                                                    <textarea className='form-control' placeholder='Enter a review' name="review" id=""></textarea>
+                                                <div className="form-group mt-4">
+                                                    <textarea onChange={(e) => setReview(e.target.value)} className='form-control' placeholder='Enter a review' name="review" id=""></textarea>
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <input type="text" className='form-control' placeholder='Name' />
+                                                            <input onChange={(e) => setCusName(e.target.value)} type="text" className='form-control' placeholder='Name' />
                                                         </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <Rating name='rating' precision={0.5} value={4.5} />
+                                                            <Rating onChange={(e) => setCusRating(e.target.value)} name='rating' precision={0.5} />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br />
                                                 <div className="form-group">
-                                                    <Button className='btn-lg btn-big btn-round btn-blue'>Submit Review</Button>
+                                                    <Button onClick={() => addReview()} className='btn-lg btn-big btn-round btn-blue'>Submit Review</Button>
                                                 </div>
                                             </form>
                                         </div>
@@ -359,9 +508,11 @@ const ProductDetails = () => {
                     <RecommendedProducts title={'RECOMMENDED PRODUCTS'} products={productData} />
                 </div>
             </section>
-            <div className='mb-3'>
+            <div className='pb-3'>
                 <NewsLetter />
             </div>
+            {loading === true && <div className="loading"></div>
+            }
         </>
     )
 }

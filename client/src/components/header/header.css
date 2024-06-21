@@ -54,6 +54,7 @@
 
 .logoWrapper .sopixlogotitle {
     font-size: 30px;
+    color: var(--text-color);
     font-weight: 700;
     padding-top: 10px;
     padding-left: 0;
@@ -66,7 +67,8 @@
     min-width: 150px !important;
     text-align: left;
     justify-content: flex-start;
-    color: #000;
+    color: var(--text-color);
+    background: var(--item-bg2);
     border: 1px solid rgba(0, 0, 0, 0.2) !important;
     padding: 10px 15px;
 }
@@ -89,6 +91,7 @@
 
 .headerWrapper .header .part2 .countrydrop span.ml-auto svg {
     opacity: 0.7;
+    color: var(--text);
 }
 
 .headersearch {
@@ -145,12 +148,13 @@ header .part3 .circle {
     width: 45px;
     border-radius: 50%;
     font-size: 29px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #000;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
 }
 
 header .part3 .circle svg {
     font-size: 24px;
+    color: var(--text-color);
 }
 
 header .part3 .cardtab button {
@@ -269,9 +273,9 @@ nav .navpart2 ul {
 
 nav .navpart2 ul li a {
     font-size: 15px;
-    font-weight: 525;
+    font-weight: var(--weight2);
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--text-color);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -298,20 +302,26 @@ nav .navpart2 ul li a:hover {
     background: #f0faff;
 }
 
+nav .navpart2 ul li a:hover svg {
+    color: var(--text);
+}
+
 nav .navpart2 ul li a svg {
     font-size: 20px;
+    color: var(--text-color);
 }
 
 .headerWrapper .line {
     width: 100%;
     height: 1px;
     margin-top: 15px;
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--line2);
     border-radius: 25px;
 }
 
 .headerWrapper {
     transition: all 0.3s ease-in-out;
+    background: var(--black);
 }
 
 .headerWrapper .navigationwrapper.sticky {
@@ -319,10 +329,10 @@ nav .navpart2 ul li a svg {
     top: 0;
     width: 100%;
     z-index: 999999999999999;
-    background: #fff;
+    background: var(--black);
     padding: 10px;
     transition: all 0.3s ease-in-out;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--borderS);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }

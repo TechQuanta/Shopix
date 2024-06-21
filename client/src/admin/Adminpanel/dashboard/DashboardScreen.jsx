@@ -11,7 +11,6 @@ const Dashboard = () => {
       <Dashhead />
       <AreaTop />
       <AreaCards />
-      <AreaCharts />
       <AreaTable />
     </div>
   );

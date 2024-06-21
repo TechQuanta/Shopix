@@ -16,7 +16,7 @@ const QuantityBox = ({ size, quantity, item, selectedItem }) => {
     }, [])
 
     useEffect(() => {
-        context.setProductQuantity(quantityy)
+        context?.setProductQuantity(quantityy)
         selectedItem(item, quantityy);
     }, [quantityy])
     return (

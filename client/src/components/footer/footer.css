@@ -1,12 +1,11 @@
 .footer {
-    background-color: #d8d8d8;
+    background-color: var(--blackbg1);
     padding: 50px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     color: white;
     position: relative;
     bottom: 0;
     display: flex;
-    z-index: 9999999999999;
 }
 
 .footer.hide {

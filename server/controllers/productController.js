@@ -469,3 +469,37 @@ export const getProductDetails = async (req, res) => {
         })
     }
 }
+
+export const getSearchedProducts = async (req, res) => {
+    try {
+        const query = req.query.q;
+
+        if (!query) {
+            return res.status(404).json({ message: "Query is required" });
+        }
+
+        const items = await productModel.find({
+            $or: [
+                { name: { $regex: query, $options: 'i' } },
+                { brandname: { $regex: query, $options: 'i' } },
+                { category: { $regex: query, $options: 'i' } },
+                { subcat: { $regex: query, $options: 'i' } }
+            ]
+        });
+
+        res.json({
+            message: "Searched Products",
+            data: items,
+            success: true,
+            error: false
+        })
+
+
+    } catch (err) {
+        res.status(400).json({
+            message: err.message || err,
+            error: true,
+            success: false
+        })
+    }
+}

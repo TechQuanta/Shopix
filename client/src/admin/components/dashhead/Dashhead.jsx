@@ -63,7 +63,7 @@ const Dashhead = () => {
 
             <div className="dashheaditems">
                 <span className="dashheaditemsitem" onClick={() => navigate("/")}>Home</span>
-                <span className="dashheaditemsitem" onClick={() => navigate("/dashboard/profile")}>{authUser?.username}</span>
+                <span className="dashheaditemsitem" onClick={() => navigate("/dashboard/profile")}>{User?.username}</span>
                 <span className="dashheaditemsitem">
                     <button
                         type="button"
@@ -79,7 +79,7 @@ const Dashhead = () => {
                         />
                     </button>
                 </span>
-                {authUser?.username &&
+                {/* {User?.username &&
                     <span to={"/authenticate"} className="dashheaditemsitem">
                         <button className="dashheaditemsitemlogin" onClick={() => {
                             navigate(`/authenticate`);
@@ -87,7 +87,7 @@ const Dashhead = () => {
                             Login
                         </button>
                     </span>
-                }
+                } */}
             </div>
             {/* </div> */}
         </div>

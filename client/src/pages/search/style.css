@@ -1,0 +1,22 @@
+.searchpagemain {
+    background-color: #f1f0f0cb;
+}
+
+.searchpagewrapper {
+    width: 95%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.searchpagewrapper .productitemssearchwrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.searchpagewrapper .productitemssearchwrapper .productItem {
+    width: 23% !important;
+}

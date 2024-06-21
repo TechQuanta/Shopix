@@ -5,10 +5,10 @@ import avatar from "../../../assets/admin/avatar.png";
 import SummaryApi from '../../../utils/apiUrls';
 import Dashhead from '../../components/dashhead/Dashhead';
 import EditProfile from './editprofie/EditProfile';
-import ChangeRolePopup from '../../components/Users/UsersTable/changerolepopup/ChangeRolePopup';
 import userAtom from '../../../atom (global state)/userAtom';
 import { useRecoilValue } from 'recoil';
 import { useAuthContext } from '../../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const User = useRecoilValue(userAtom);
@@ -56,40 +56,22 @@ const Profile = () => {
                     <p className='profilecardpagedashmainp'>Gender:  {user?.gender}</p>
                     <p className='profilecardpagedashmainp'>Address:  {user?.address ? user?.address : "not set"}</p>
                     <div class="profilecardpagedashmainbuttons">
-                        <button class="profilecardpagedashmainprimary" onClick={() => setShowchangeRole(true)}>
-                            Change Role
-                        </button>
-                        <button class="profilecardpagedashmainprimary ghost">
+                        <Link to={'/orders'}>   <button class="profilecardpagedashmainprimary ghost">
                             Orders
-                        </button>
+                        </button></Link>
                     </div>
-                    <div class="profilecardpagedashmainskills">
+                    <div class="profilecardpagedashmainskills w-100">
                         <h6>Orders</h6>
                         <ul>
-                            <li>Orders Count: {user?.orders ? user?.orders.length : "0"}</li>
+                            <li>Orders Count: {user?.orders}</li>
                             {user?.orders.length > 0 && <li>See Orders</li>}
-                        </ul>
-                        <h6>Reviews</h6>
-                        <ul>
-                            <li>Reviews Count: {user?.reviews ? user?.reviews.length : "0"}</li>
-                            {user?.reviews.length > 0 && <li>See Reviews</li>}
-                        </ul>
-                        <h6>WatchList</h6>
-                        <ul>
-                            <li>WatchList Count: {user?.watchlist ? user?.watchlist.length : "0"}</li>
-                            {user?.watchlist.length > 0 && <li>See WatchList</li>}
                         </ul>
                     </div>
                 </div>
                 <div className="editprofiledashmain">
-                    <EditProfile user={user} />
+                    <EditProfile user={user} fetchUser={fetchUser} />
                 </div>
             </div>
-            <ChangeRolePopup
-                show={showchangeRole}
-                setShow={setShowchangeRole}
-                user={user}
-            />
         </div>
     )
 }

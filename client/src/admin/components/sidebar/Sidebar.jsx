@@ -1,13 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
-import LogoBlue from "../../../assets/admin/logo_blue.svg";
-import LogoWhite from "../../../assets/admin/logo_white.svg";
 import logo from "../../../assets/shopixlogo.png"
 import {
   MdOutlineClose,
-  MdOutlineCurrencyExchange,
   MdOutlineGridView,
   MdOutlineLogout,
-  MdOutlineSettings,
   MdOutlineShoppingBag,
 } from "react-icons/md";
 import { RiUserSettingsLine } from "react-icons/ri";
@@ -16,15 +12,12 @@ import { FaCircleUser } from "react-icons/fa6";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Sidebar.scss";
 import { toast } from "react-toastify";
-import { useDashboardTheme } from "../../../context/ThemeContext";
 import { useAuthContext } from "../../../context/AuthContext";
 import { SidebarContext } from "../../../context/SidebarContext";
 import SummaryApi from "../../../utils/apiUrls";
-import { LIGHT_THEME } from "../../../utils/themeConstants";
 import { BiCategoryAlt } from "react-icons/bi";
 import userAtom from "../../../atom (global state)/userAtom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import usersAtom from "../../../atom (global state)/usersAtom";
 
 const Sidebar = () => {
   const User = useRecoilValue(userAtom);
@@ -105,14 +98,6 @@ const Sidebar = () => {
                   <MdOutlineShoppingBag size={20} />
                 </span>
                 <span className={`menu-link-text ${isSidebarOpen ? "sidebar-show" : ""}`}>Orders</span>
-              </NavLink>
-            </li>
-            <li className={`menu-item ${isSidebarOpen ? "sidebar-show" : ""}`}>
-              <NavLink to="/admin/transactions" className={`menu-link ${isSidebarOpen ? "sidebar-show" : ""}`}>
-                <span className="menu-link-icon">
-                  <MdOutlineCurrencyExchange size={18} />
-                </span>
-                <span className={`menu-link-text ${isSidebarOpen ? "sidebar-show" : ""}`}>Transactions</span>
               </NavLink>
             </li>
             <li className={`menu-item ${isSidebarOpen ? "sidebar-show" : ""}`}>

@@ -54,7 +54,7 @@ const HomeCategory = () => {
                     {allCategories && allCategories?.map((item, index) => {
                         return (
                             <SwiperSlide key={index}>
-                                <Link to={`/products/category/${item?.name}`} className="item text-center cursor homecatslider" style={{ background: item.color }}>
+                                <Link to={`/category/${item?.name}`} className="item text-center cursor homecatslider" style={{ background: item.color }}>
                                     <img src={item.image} alt="" />
 
                                     <h6 className='mt-3 mb-0'>{item.name}</h6>

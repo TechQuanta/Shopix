@@ -31,8 +31,10 @@ const Home = () => {
     const [allCat, setAllCat] = useState()
     const [loading, setLoading] = useState(false);
     const context = useContext(ValuesContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchAllProducts = async () => {
+        setIsLoading(true);
         context.setProgress(15)
 
         const fetchData = await fetch(SummaryApi.featuredProducts.url, {
@@ -45,12 +47,18 @@ const Home = () => {
 
         if (dataResponse?.success) {
             setFeaturedProducts(dataResponse?.data);
-            context.setProgress(100)
+            setTimeout(() => {
+                context.setProgress(100)
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
-            context.setProgress(100)
+            setTimeout(() => {
+                context.setProgress(100)
+                setIsLoading(false)
+            }, 1000)
         }
     }
 
@@ -65,7 +73,7 @@ const Home = () => {
         const dataResponse = await fetchData.json()
 
         if (dataResponse?.success) {
-            setLatestProducts(dataResponse?.data);
+            setLatestProducts(dataResponse?.data)
         }
 
         if (dataResponse.error) {
@@ -76,6 +84,7 @@ const Home = () => {
     const [allSubCategories, setAllSubCategories] = useState();
 
     const fetchCategories = async () => {
+        setIsLoading(true)
 
         const fetchData = await fetch(SummaryApi.getallsubcategoriess.url, {
             method: SummaryApi.getallsubcategoriess.method,
@@ -87,15 +96,22 @@ const Home = () => {
 
         if (dataResponse.success) {
             setAllSubCategories(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
     }
 
     const fetchAllCategories = async () => {
+        setIsLoading(true)
 
         const fetchData = await fetch(SummaryApi.getAllCategories.url, {
             method: SummaryApi.getAllCategories.method,
@@ -107,10 +123,16 @@ const Home = () => {
 
         if (dataResponse.success) {
             setAllCat(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
     }
@@ -145,6 +167,7 @@ const Home = () => {
     }, [selectedCat2, setSelectedcat2])
 
     const getMobilesList = async () => {
+        setIsLoading(true)
 
         const fetchData = await fetch(SummaryApi.categoryProduct.url + selectedCat, {
             method: SummaryApi.categoryProduct.method,
@@ -156,10 +179,16 @@ const Home = () => {
 
         if (dataResponse?.success) {
             setMobileProducts(dataResponse?.data);
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         }
     }
 
@@ -184,7 +213,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="homepage mb-4">
+            <div className="homepage">
                 <HomeBanner />
 
                 <HomeCategory />
@@ -201,7 +230,7 @@ const Home = () => {
                                     <Button className='viewallbtn ml-auto'>View All &nbsp; <BsArrowRightShort /></Button>
                                 </div>
 
-                                <ProductCarousel1 products={featuredproducts} />
+                                <ProductCarousel1 products={featuredproducts} loading={isLoading} />
                             </div>
                             <div className="col-md-3">
                                 <div className="banner">
@@ -251,7 +280,7 @@ const Home = () => {
                                 </div>
 
                                 <div className="product_row productrow2 w-100 mt-0 d-flex">
-                                    <ProductCarousel1 products={catProducts} width={'catlist'} />
+                                    <ProductCarousel1 products={catProducts} width={'catlist'} loading={isLoading} />
                                 </div>
 
 
@@ -310,7 +339,7 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            <ProductCarousel2 products={MobileProducts} />
+                            <ProductCarousel2 products={MobileProducts} loading={isLoading} />
                         </div>
 
                         <div className="couponbanner mt-3">
@@ -325,8 +354,12 @@ const Home = () => {
                     </div>
                 </section>
 
-                <NewsLetter />
+                <div className='pb-4'>
+                    <NewsLetter />
+                </div>
             </div>
+            {isLoading === true && <div className="loading"></div>
+            }
         </>
     )
 }

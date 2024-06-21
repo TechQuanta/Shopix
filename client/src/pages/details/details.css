@@ -1,6 +1,6 @@
 .section {
     padding: 45px 0px;
-    background-color: #f1f0f0cb;
+    background-color: var(--innbg2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,18 +25,32 @@
 
 .productdetails .cont {
     width: 90%;
-    background: #fff;
+    background: var(--innbg);
     padding: 30px;
     border-radius: 15px;
 }
 
 .productdetails .cont h2.hd {
     line-height: 35px;
+    color: var(--text-color);
+}
+
+.productdetails span {
+    color: var(--text-color);
+    font-weight: 300;
+}
+
+.productdetails .cont .rowarea .detailsright span {
+    color: var(--text-color);
+}
+
+.productdetails .cont .rowarea .detailsright p {
+    color: var(--text-color);
 }
 
 .productdetails .relatedpro {
     width: 90%;
-    background: #fff;
+    background: var(--innbg);
     padding: 30px;
     border-radius: 15px;
 }
@@ -107,16 +121,20 @@
     transition: all 0.2s ease-in-out;
 }
 
+.productdetails .detailsright .actions button {
+    color: var(--text-color) !important;
+}
+
 .productdetails .cont .productSize a {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px 7px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--line2);
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    color: #000;
+    color: var(--text-color);
     font-size: 12px;
     transition: all 0.1s ease-in-out;
 }
@@ -132,7 +150,7 @@
 
 .productdetails .reviews {
     width: 90%;
-    background: #fff;
+    background: var(--innbg);
     padding: 30px;
     border-radius: 15px;
 }
@@ -140,13 +158,15 @@
 .detailspagetabs {
     border-radius: 25px !important;
     padding: 20px;
-    background: #fafafa;
+    background: var(--innbg3);
+    color: var(--text-color);
 }
 
 .detailspagetabs table th,
 .detailspagetabs table td {
     vertical-align: middle;
     font-size: 14px;
+    color: var(--text-color);
 }
 
 .detailspagetabs table {
@@ -163,11 +183,15 @@
 
 .detailspagetabs .customtabs ul li button {
     padding: 7px 25px !important;
-    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--line2) !important;
     font-size: 16px !important;
     text-transform: capitalize !important;
     border-radius: 30px !important;
-    color: #000 !important;
+    color: var(--text-color) !important;
+}
+
+.tabcontent {
+    color: var(--text-color);
 }
 
 .detailspagetabs .customtabs ul li button.active {
@@ -177,6 +201,8 @@
 
 .detailspagetabs .reviewscard {
     margin-bottom: 25px !important;
+    position: relative;
+    background: var(--innbg2);
 }
 
 .detailspagetabs .reviewscard .image {
@@ -188,14 +214,42 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .detailspagetabs .reviewscard .rounded-circle img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+}
+
+.reviewscard .delrevb {
+    position: absolute !important;
+    bottom: 0px !important;
+    right: -16px !important;
+    color: #000 !important;
+    border-radius: 14px !important;
+}
+
+.reviewscard .delrevb svg {
+    color: red !important;
+    font-size: 20px;
 }
 
 .detailspagetabs .reviewscard .info {

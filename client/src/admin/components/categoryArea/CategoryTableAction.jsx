@@ -8,7 +8,7 @@ import CategoryEditPopup from "./categoryeditpopup/CategoryEditPopup";
 import Category from './../../Adminpanel/category/Category';
 import { ValuesContext } from "../../../App";
 
-const CategoryTableAction = ({ category }) => {
+const CategoryTableAction = ({ category, fetchCategories }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [changeRoleShow, setChangeRoleShow] = useState(false);
 
@@ -49,10 +49,12 @@ const CategoryTableAction = ({ category }) => {
 
     if (dataResponse.error) {
       toast.error(dataResponse.message)
+      fetchCategories();
       return;
     }
 
     if (dataResponse.success) {
+      fetchCategories();
       toast.success(`Category ${category?.name} deleted successfully.`)
     }
 
@@ -97,6 +99,7 @@ const CategoryTableAction = ({ category }) => {
           show={changeRoleShow}
           setShow={setChangeRoleShow}
           category={category}
+          fetchCategories={fetchCategories}
         />
       </button>
     </>

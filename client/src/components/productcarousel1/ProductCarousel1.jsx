@@ -10,8 +10,9 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { SwiperNavButtons } from '../swipernav/swiperNavButtons';
 import ProductItem from '../productitem/ProductItem';
+import Spinner from '../spinner/Spinner';
 
-const ProductCarousel1 = ({ right, sliderperview, products, width, css }) => {
+const ProductCarousel1 = ({ right, sliderperview, products, width, css, loading }) => {
     return (
         <div className='product_row w-100 mt-4'>
             <Swiper
@@ -32,9 +33,12 @@ const ProductCarousel1 = ({ right, sliderperview, products, width, css }) => {
                     )
                 })}
             </Swiper>
-            {products?.length <= 0 && <div className='noprofoundinselemain'>
+            {products?.length <= 0 && loading === false && <div className='noprofoundinselemain'>
                 <h1>Products unavailable, Add one to see here.</h1>
                 <Button onClick={() => navigate('/admin/products')}>Add One</Button>
+            </div>}
+            {loading === true && <div className='spinerrauto'>
+                <Spinner />
             </div>}
         </div>
     )

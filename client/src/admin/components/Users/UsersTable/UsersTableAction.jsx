@@ -7,7 +7,7 @@ import SummaryApi from "../../../../utils/apiUrls";
 import UserViewPopup from './../UserViewPopup/UserViewPopup';
 import ChangeRolePopup from "./changerolepopup/ChangeRolePopup";
 
-const UsersTableAction = ({ user }) => {
+const UsersTableAction = ({ user, fetchAllUsers }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showUserView, setShowUserView] = useState(false);
   const [changeRoleShow, setChangeRoleShow] = useState(false);
@@ -50,11 +50,13 @@ const UsersTableAction = ({ user }) => {
 
     if (dataResponse.error) {
       toast.error(dataResponse.message)
+      fetchAllUsers();
       return;
     }
 
     if (dataResponse.success) {
       toast.success(`User ${user?.username} deleted successfully.`)
+      fetchAllUsers();
     }
 
     setUsers(users.filter((p) => p._id !== user._id));
@@ -98,6 +100,7 @@ const UsersTableAction = ({ user }) => {
           show={changeRoleShow}
           setShow={setChangeRoleShow}
           user={user}
+          fetchAllUsers={fetchAllUsers}
         />
       </button>
     </>

@@ -1,5 +1,5 @@
 import express from "express";
-import { addProduct, deleteProduct, filterProduct, getAllProducts, getAllProductsById, getAllProductsLess, getCatProduct, getCatProductPage, getCatWiseProduct, getCategoryProduct, getCategoryWuseProduct, getFeaturedProduct, getLatestProducts, getProductDetails, getSubCatProductPage, updateProduct } from "../controllers/productController.js";
+import { addProduct, deleteProduct, filterProduct, getAllProducts, getAllProductsById, getAllProductsLess, getCatProduct, getCatProductPage, getCatWiseProduct, getCategoryProduct, getCategoryWuseProduct, getFeaturedProduct, getLatestProducts, getProductDetails, getSearchedProducts, getSubCatProductPage, updateProduct } from "../controllers/productController.js";
 
 const router = express.Router();
 
@@ -18,6 +18,7 @@ router.post("/getcatproduct/:category", getCatProduct);
 router.post("/getcatproductpage", getCatProductPage);
 router.post("/getSubcatproductpage", getSubCatProductPage);
 router.post("/getproductdetails", getProductDetails);
+router.get("/getSearchedProducts", getSearchedProducts);
 router.post("/getcatwiseproducts/:category", getCatWiseProduct);
 
 export default router;

@@ -29,21 +29,13 @@ const userSchema = mongoose.Schema({
         required: true,
         enum: ["seller", "admin", "buyer"],
     },
-    watchlist: {
-        type: [String],
-        default: [],
-    },
     address: {
         type: String,
         default: "",
     },
     orders: {
-        type: [String],
-        default: [],
-    },
-    reviews: {
-        type: [String],
-        default: [],
+        type: Number,
+        default: 0,
     },
 },
     {

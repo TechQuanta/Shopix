@@ -9,7 +9,7 @@ import SummaryApi from '../../../../../utils/apiUrls';
 import Loader from '../../../../../utils/Loader';
 import userAtom from '../../../../../atom (global state)/userAtom';
 
-const ChangeRolePopup = ({ show, setShow, user }) => {
+const ChangeRolePopup = ({ show, setShow, user, fetchAllUsers, fetchUser }) => {
     const hidePopup = () => {
         setShow(false);
     };
@@ -39,12 +39,19 @@ const ChangeRolePopup = ({ show, setShow, user }) => {
         if (dataResponse.error) {
             toast.error(dataResponse.message)
             setLoading(false)
+            fetchAllUsers();
+            fetchUser();
+            setShow(false)
             return;
         }
 
         if (dataResponse.success) {
+            fetchAllUsers();
             toast.success(`User Role Updated from ${user?.role} to ${role}`)
             setLoading(false)
+            setShow(false)
+            fetchAllUsers();
+            fetchUser();
         }
         const updatedUsers = users.map((us) => {
             if (us._id === user._id) {
@@ -90,7 +97,7 @@ const ChangeRolePopup = ({ show, setShow, user }) => {
                                                 <span className="maincheckboxrole-spanrole">Seller</span>
                                             </label>
                                         </span>
-                                        <Loader onClick={changeUserRole} loading={loading} title={'change'} />
+                                        <Loader onClick={changeUserRole} loading={loading} title={'change Role'} />
                                     </form>
                                 </div>
                             </div>

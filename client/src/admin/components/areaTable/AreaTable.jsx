@@ -1,74 +1,43 @@
+import { toast } from "react-toastify";
 import "./AreaTable.scss";
-import AreaTableAction from './AreaTableAction';
+import SummaryApi from "../../../utils/apiUrls";
+import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 const TABLE_HEADS = [
-  "Products",
   "Order ID",
   "Date",
   "Customer name",
   "Status",
   "Amount",
-  "Action",
-];
-
-const TABLE_DATA = [
-  {
-    id: 100,
-    name: "Iphone 13 Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 400,
-  },
-  {
-    id: 101,
-    name: "Macbook Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "pending",
-    amount: 288,
-  },
-  {
-    id: 102,
-    name: "Apple Watch",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "canceled",
-    amount: 500,
-  },
-  {
-    id: 103,
-    name: "Microsoft Book",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 100,
-  },
-  {
-    id: 104,
-    name: "Apple Pen",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 60,
-  },
-  {
-    id: 105,
-    name: "Airpods",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 80,
-  },
+  "Phone No.",
 ];
 
 const AreaTable = () => {
+
+  const [ordersData, setOrdersData] = useState();
+
+  useEffect(() => {
+    fetchOrders();
+  }, [])
+
+  const fetchOrders = async () => {
+    const fetchData = await fetch(SummaryApi.getOrdersLatest.url, {
+      method: SummaryApi.getOrdersLatest.method,
+      headers: { "Content-Type": "application/json" },
+    },
+    );
+
+    const dataResponse = await fetchData.json()
+
+    if (dataResponse.success) {
+      setOrdersData(dataResponse?.data);
+    }
+
+    if (dataResponse.error) {
+      toast.error(dataResponse.message)
+    }
+  }
   return (
     <section className="content-area-table">
       <div className="data-table-info">
@@ -84,24 +53,20 @@ const AreaTable = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_DATA?.map((dataItem) => {
+            {ordersData && ordersData?.map((dataItem, index) => {
               return (
-                <tr key={dataItem.id}>
-                  <td>{dataItem.name}</td>
-                  <td>{dataItem.order_id}</td>
-                  <td>{dataItem.date}</td>
-                  <td>{dataItem.customer}</td>
+                <tr key={index}>
+                  <td>{dataItem?._id}</td>
+                  <td>{format(new Date(dataItem?.date), 'dd/MM/yyyy')}</td>
+                  <td>{dataItem?.name}</td>
                   <td>
                     <div className="dt-status">
-                      <span
-                        className={`dt-status-dot dot-${dataItem.status}`}
-                      ></span>
-                      <span className="dt-status-text">{dataItem.status}</span>
+                      {dataItem?.status === 'pending' ? <span className="dt-status-text badge badge-danger">{dataItem?.status}</span> : <span className="dt-status-text badge badge-success">{dataItem?.status}</span>}
                     </div>
                   </td>
-                  <td>${dataItem.amount.toFixed(2)}</td>
+                  <td>Rs.{dataItem?.amount}</td>
                   <td className="dt-cell-action">
-                    <AreaTableAction />
+                    {dataItem?.phonenumber}
                   </td>
                 </tr>
               );

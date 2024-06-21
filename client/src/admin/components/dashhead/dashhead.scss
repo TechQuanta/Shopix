@@ -51,11 +51,13 @@
     .dashheaditems {
         display: flex;
         align-items: center;
-        width: 358px;
-        margin-right: 0;
-        padding-right: 0;
+        width: 204px;
+        margin-right: 0px;
+        padding-right: 0px;
 
         .dashheaditemsitem {
+            margin-right: 0px;
+            padding-right: 0px;
             height: 60px;
             display: flex;
             align-items: center;

@@ -19,7 +19,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import PersonAdd from '@mui/icons-material/PersonAdd';
+import TurnedInNotRoundedIcon from '@mui/icons-material/TurnedInNotRounded';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import Tooltip from '@mui/material/Tooltip';
@@ -27,6 +27,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import userAtom from '../../atom (global state)/userAtom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import cartAtom from '../../atom (global state)/cartAtom';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 const Header = () => {
 
     const { setAuthUser } = useAuthContext();
@@ -110,9 +111,10 @@ const Header = () => {
             }
             localStorage.removeItem("shopix");
             setAuthUser(null);
+
             if (data?.message === "User logged out successfully") {
                 navigate("/authenticate");
-                setUser(data);
+                setUser(null);
                 toast.success("Logout Successfully!")
             }
         } catch (error) {
@@ -193,12 +195,20 @@ const Header = () => {
                                         </MenuItem>
                                         <Divider />
                                         <MenuItem onClick={() => {
-                                            navigate('/authenticate')
+                                            navigate('/orders')
                                         }}>
                                             <ListItemIcon>
-                                                <PersonAdd fontSize="small" />
+                                                <ListAltIcon fontSize="small" />
                                             </ListItemIcon>
-                                            Add another account
+                                            Orders
+                                        </MenuItem>
+                                        <MenuItem onClick={() => {
+                                            navigate('/wishlist')
+                                        }}>
+                                            <ListItemIcon>
+                                                <TurnedInNotRoundedIcon fontSize="small" />
+                                            </ListItemIcon>
+                                            Wishlist
                                         </MenuItem>
                                         <MenuItem onClick={() => {
                                             navigate('/admin/profile')

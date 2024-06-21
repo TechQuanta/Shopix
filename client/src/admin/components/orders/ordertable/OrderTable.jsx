@@ -1,71 +1,55 @@
 import { Box, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { FaEdit } from "react-icons/fa";
+
 
 import './OrderTable.scss'
-import { mockDataTeam } from "../../../../utils/mockData";
 import OrdersActions from "./OrdersActions";
-import { useDemoData } from '@mui/x-data-grid-generator';
+import { ValuesContext } from "../../../../App";
+import { useContext, useEffect, useState } from "react";
+import userAtom from "../../../../atom (global state)/userAtom";
+import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import SummaryApi from "../../../../utils/apiUrls";
+import { format } from "date-fns";
 
 const OrderTable = () => {
-    const columns = [
-        { field: "id", headerName: "ID" },
-        {
-            field: "name",
-            headerName: "Name",
-            flex: 1,
-            cellClassName: "name-column--cell",
-        },
-        {
-            field: "product",
-            headerName: "Product",
-            type: "number",
-            headerAlign: "left",
-            align: "left",
-        },
-        {
-            field: "product price",
-            headerName: "Product Price",
-            flex: 1,
-        },
-        {
-            field: "ordered",
-            headerName: "Ordered By",
-            flex: 1,
-        },
-        {
-            field: "date",
-            headerName: "Order Date",
-            flex: 1,
-        },
-        {
-            field: "accessLevel",
-            headerName: "Actions",
-            flex: 1,
-            renderCell: ({ row: { access } }) => {
-                return (
-                    <Box
-                        width="60%"
-                        m="0 auto"
-                        pt={0}
-                        mt={0}
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                        borderRadius="4px"
-                        cursor="pointer"
-                    >
-                        <OrdersActions />
-                    </Box>
-                );
-            },
-        },
-    ];
 
-    const { data } = useDemoData({
-        dataSet: 'Commodity',
-        rowLength: 100,
-    });
+    const [ordersData, setOrdersData] = useState();
+    const context = useContext(ValuesContext);
+    const [seeProducts, setSeeProducts] = useState(false);
+    const [products, setProducts] = useState();
+    const User = useRecoilValue(userAtom);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        fetchOrders();
+    }, [])
+
+    const fetchOrders = async () => {
+        context.setProgress(20)
+        const fetchData = await fetch(SummaryApi.getOrders.url, {
+            method: SummaryApi.getOrders.method,
+            headers: { "Content-Type": "application/json" },
+        },
+        );
+
+        const dataResponse = await fetchData.json()
+
+        if (dataResponse.success) {
+            setOrdersData(dataResponse?.data);
+            setTimeout(() => {
+                context.setProgress(100)
+            }, 1000)
+        }
+
+        if (dataResponse.error) {
+            toast.error(dataResponse.message)
+            setTimeout(() => {
+                context.setProgress(100)
+            }, 1000)
+        }
+    }
 
     return (
         <Box m="0px">
@@ -75,50 +59,81 @@ const OrderTable = () => {
                     {/* <ButtonEdit user={mockDataTeam} /> */}
                 </div>
             </Box>
-            <Box
-                m="20px 0 40px 0"
-                height="79vh"
-                sx={{
-                    "& .MuiDataGrid-root": {
-                        border: "none",
-                    },
-                    "& .MuiDataGrid-cell": {
-                        borderBottom: "none",
-                    },
-                    "& .name-column--cell": {
-                        color: "#94e2cd",
-                    },
-                    "& .MuiDataGrid-columnHeaders": {
-                        backgroundColor: "#3e4396",
-                        borderBottom: "none",
-                    },
-                    "& .MuiDataGrid-virtualScroller": {
-                        backgroundColor: "#1F2A40",
-                    },
-                    "& .MuiDataGrid-footerContainer": {
-                        borderTop: "none",
-                        backgroundColor: "#3e4396",
-                    },
-                    "& .MuiCheckbox-root": {
-                        color: `${"#b7ebde"} !important`,
-                    },
-                }}
-            >
-                <DataGrid checkboxSelection
-                    rows={mockDataTeam}
-                    columns={columns}
-                    getRowId={(row) => row.id}
-                    initialState={{
-                        ...data.initialState,
-                        pagination: { paginationModel: { pageSize: 5 } },
-                    }}
-                    pageSizeOptions={[5, 10, 25]}
-                    getRowSpacing={(params) => ({
-                        top: params.isFirstVisible ? 0 : 5,
-                        bottom: params.isLastVisible ? 0 : 5,
-                    })}
-                />
-            </Box>
+            <div className="table-responsive orderTable mt-3">
+                <table className="table table-striped table-bordered">
+                    <thead className='thead-dark'>
+                        <tr>
+                            <th>Payment Id</th>
+                            <th>Products</th>
+                            <th>Customer Name</th>
+                            <th>Mobile Number</th>
+                            <th>Pin Code</th>
+                            <th>Total Amount</th>
+                            <th>Payment Method</th>
+                            <th>Email</th>
+                            <th>Order Status</th>
+                            <th>Date</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ordersData && ordersData?.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td><span className='text-blue'>{item?.paymentid}</span></td>
+                                    <td><span onClick={() => {
+                                        setSeeProducts(!seeProducts);
+                                        setProducts(item?.products);
+                                        toast.info("Scroll down to see Products.")
+                                    }} className='text-blue pointer'>Click here to view</span></td>
+                                    <td>{item?.name}</td>
+                                    <td>{item?.phonenumber}</td>
+                                    <td>{item?.pincode}</td>
+                                    <td>{item?.amount}</td>
+                                    <td>{item?.paymentmethod}</td>
+                                    <td>{item?.email}</td>
+                                    <td>{item?.status === 'pending' ? <span className='badge badge-danger'>{item?.status}</span> : <span className='badge badge-success'>{item?.status}</span>}</td>
+                                    <td>{format(new Date(item?.date), 'dd/MM/yyyy')}</td>
+                                    <td>{item?.address}</td>
+                                    <td>  <OrdersActions order={item} fetchOrders={fetchOrders} /></td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+
+            {seeProducts === true && <div className="table-responsive orderTable mt-4">
+                <span className=''>
+                    <h4 className='hd mb-0'>Products</h4>
+                    <p>There are <b className='redt'>{products && products?.length}</b> products in your order.</p>
+                </span>
+                <table className="table table-striped table-bordered mt-3">
+                    <thead className='thead-light'>
+                        <tr>
+                            <th>Product Id</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Product Quantity</th>
+                            <th>Product Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products && products?.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td><span className='text-blue pointer' onClick={() => navigate(`/product/${item?.productid}`)}>{item?.productid}</span></td>
+                                    <td><span className='text-blue pointer' onClick={() => navigate(`/product/${item?.productid}`)}>{item?.producttitle}</span></td>
+                                    <td><span className='proimgorder'><img src={item?.image} alt="" /></span></td>
+                                    <td>{item?.quantity}</td>
+                                    <td>{item?.price}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>}
         </Box>
     );
 };

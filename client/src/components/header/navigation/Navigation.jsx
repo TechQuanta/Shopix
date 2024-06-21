@@ -120,7 +120,7 @@ const Navigation = ({ category }) => {
                                 <ul>
                                     {category && category?.map((item, index) => {
                                         return (
-                                            <li key={index}><Link key={index} to={"/"}><Button>{item?.name}</Button></Link></li>
+                                            <li key={index} onClick={() => setOpenSidebar(false)}><Link key={index} to={`/category/${item?.name}`}><Button>{item?.name}</Button></Link></li>
                                         )
                                     })}
                                 </ul>
@@ -131,7 +131,7 @@ const Navigation = ({ category }) => {
                         <ul className='list list-inline ml-auto'>
                             <li className='list-inline-item'> <Link to={"/"}> <IoHomeOutline /> &nbsp; Home</Link></li>
                             <li className='list-inline-item'>
-                                <Link to={"/cat/Electronics"} className="disabled-link"><GiWashingMachine /> &nbsp;Electronics&nbsp; <FaAngleDown className='navheaangdown' /></Link>
+                                <Link to={"/category/Electronics"}><GiWashingMachine /> &nbsp;Electronics&nbsp; <FaAngleDown className='navheaangdown' /></Link>
                                 <div className="submenu shadow">
                                     {allSUbElectronicsCategories && allSUbElectronicsCategories?.map((item, index) => {
                                         return (
@@ -141,7 +141,7 @@ const Navigation = ({ category }) => {
                                 </div>
                             </li>
                             <li className='list-inline-item'>
-                                <Link to={"/cat/Fashion"} className="disabled-link">
+                                <Link to={"/category/Fashion"}>
                                     <IoIosShirt /> &nbsp;Fashion&nbsp; <FaAngleDown className='navheaangdown' /> </Link>
                                 <div className="submenu shadow">
                                     {allSUbFashionCategories && allSUbFashionCategories?.map((item, index) => {
@@ -153,7 +153,7 @@ const Navigation = ({ category }) => {
                             </li>
                             <li className='list-inline-item'> <Link to={"/subcat/Mobiles"} ><MdOutlineBakeryDining /> &nbsp;Mobiles</Link></li>
                             <li className='list-inline-item'>
-                                <Link to={"/cat/Groceries"} className="disabled-link"><GiSugarCane /> &nbsp;Groceries&nbsp; <FaAngleDown className='navheaangdown' /></Link>
+                                <Link to={"/category/Groceries"} ><GiSugarCane /> &nbsp;Groceries&nbsp; <FaAngleDown className='navheaangdown' /></Link>
                                 <div className="submenu shadow">
                                     {allSUbGroceryCategories && allSUbGroceryCategories?.map((item, index) => {
                                         return (

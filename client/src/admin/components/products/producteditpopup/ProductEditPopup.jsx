@@ -24,7 +24,7 @@ const style = {
     zIndex: 9999999999,
 };
 
-export default function ProductEditPopup({ show, setShow, product }) {
+export default function ProductEditPopup({ show, setShow, product, fetchAllProducts }) {
 
     const [productName, setProductName] = React.useState("");
     const [brandName, setBrandName] = React.useState("");
@@ -58,12 +58,14 @@ export default function ProductEditPopup({ show, setShow, product }) {
         if (dataResponse.error) {
             toast.error(dataResponse.message)
             setLoading(false)
+            fetchAllProducts();
             return;
         }
 
         if (dataResponse.success) {
             toast.success(`Product updated Successfully.`)
             setLoading(false)
+            fetchAllProducts();
         }
         setLoading(false)
         setShow(false);

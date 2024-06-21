@@ -44,17 +44,17 @@ const Footer = () => {
         <footer className={`footer ${showFooter ? "hide" : ""}`}>
             <div className="container">
                 <ul className="menuItems">
-                    <NavLink to='/movie' className="menuItem">Movies Page </NavLink>
-                    <NavLink to='/tv' className="menuItem">TV Shows Page</NavLink>
+                    <NavLink to='/orders' className="menuItem">Orders </NavLink>
+                    <NavLink to='/wishlist' className="menuItem">Wishlist</NavLink>
                     <NavLink to='/' className="menuItem">Home Page</NavLink>
-                    <NavLink to='/explore/movie' className="menuItem">Discover Movies</NavLink>
-                    <NavLink to='/explore/tv' className="menuItem">Discover TV Shows</NavLink>
+                    <NavLink to='/cart' className="menuItem">Cart</NavLink>
+                    <NavLink to='/admin/dashboard' className="menuItem">Admin Dashboard</NavLink>
                 </ul>
                 <div className="infoText">
-                    This Product is developed by <b>Balram Dhakad</b> in a major project work in a Medi-caps college, Indore.
+                    This Product is developed by <b> &nbsp;Balram Dhakad</b>.
                 </div>
                 <div className="infoText">
-                    This Single page application focuses on Finding, Exploring, Getting Recommendations, Getting Details and Finding our dream watch <br /> pick by playing with different filters, options and categories available in application.
+                    This Single page application focuses on exploring, searching, adding to cart, add to wishlist, order products by online and cod modes, filter products <br />. This Application also includes admin Dashboard with all the tools and features integrated in it.
                 </div>
                 <div className="socialIcons">
                     <span className="icon" onClick={() => openInNewTab("https://www.facebook.com/balram.dhakad.3551?mibextid=ZbWKwL")}>

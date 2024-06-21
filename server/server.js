@@ -6,7 +6,10 @@ import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from './routes/categoryRoutes.js';
 import subCategoryRoutes from "./routes/subcategoryRoutes.js";
-import cartRoutes from './routes/cartRoutes.js'
+import cartRoutes from './routes/cartRoutes.js';
+import productReviewRoutes from './routes/productReviewRoutes.js';
+import myListRoutes from './routes/myListRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -38,5 +41,8 @@ app.use("/api/product", productRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/subcategory", subCategoryRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/productReview", productReviewRoutes);
+app.use("/api/list", myListRoutes);
+app.use("/api/order", orderRoutes);
 
 app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));

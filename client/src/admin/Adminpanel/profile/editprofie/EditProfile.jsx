@@ -11,7 +11,7 @@ import Loader from '../../../../utils/Loader';
 import userAtom from '../../../../atom (global state)/userAtom';
 import { useRecoilValue } from 'recoil';
 
-const EditProfile = ({ user }) => {
+const EditProfile = ({ user, fetchUser }) => {
 
     const User = useRecoilValue(userAtom);
     const { authUser, setAuthUser } = useAuthContext();
@@ -42,6 +42,7 @@ const EditProfile = ({ user }) => {
         const dataResponse = await fetchData.json()
 
         if (dataResponse.success) {
+            fetchUser();
             toast.success(`User Updated Succesfully.`)
             setLoading(false)
         }
@@ -49,6 +50,7 @@ const EditProfile = ({ user }) => {
         if (dataResponse.error) {
             toast.error(dataResponse.message)
             setLoading(false)
+            fetchUser();
         }
 
     }

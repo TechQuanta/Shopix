@@ -1,57 +1,60 @@
-import { Box, CircularProgress, Fab } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { Check, Save } from '@mui/icons-material';
-import { green } from '@mui/material/colors';
-import { MdDelete } from "react-icons/md";
-import { toast } from 'react-toastify';
-import { useRecoilState } from 'recoil';
-import productsAtom from './../../../../atom (global state)/productsAtom';
-import SummaryApi from './../../../../utils/apiUrls';
+import { useContext, useEffect, useRef, useState } from "react";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { useRecoilState } from "recoil";
+import ChangeStatusPopup from "./changeOrderStatus/ChangeStatusPopup";
+import usersAtom from "../../../../atom (global state)/usersAtom";
+import { ValuesContext } from "../../../../App";
 
-const OrdersActions = ({ params }) => {
-  const [productEditShow, setProductEditShow] = useState(false);
+const OrdersActions = ({ order, fetchOrders }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [changeRoleShow, setChangeRoleShow] = useState(false);
 
-  const [products, setProducts] = useRecoilState(productsAtom);
+  const User = useRecoilState(usersAtom);
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  const context = useContext(ValuesContext);
 
+  const handleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
-  }
+  const dropdownRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.addEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
-      <Box
-        sx={{
-          position: 'relative',
-        }}
+      <button
+        type="button"
+        className="action-dropdown-btn"
+        onClick={handleDropdown}
       >
-        <Fab
-          color="primary"
-          sx={{
-            width: 40,
-            height: 40,
-            marginRight: "8px",
-
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            setProductEditShow(true);
-          }}
-        >
-          <Save />
-        </Fab>
-        <Fab
-          color="primary"
-          sx={{
-            width: 40,
-            height: 40,
-          }}
-          onClick={(e) => handleDelete(e)}
-        >
-          <MdDelete size={20} />
-        </Fab>
-      </Box>
+        <div className="action-dropdown-menu" ref={dropdownRef}>
+          <ul className="dropdown-menu-list">
+            <li className="dropdown-menu-item" onClick={() => setChangeRoleShow(true)}>
+              <span className="dropdown-menu-link text-blue">
+                Change Status
+              </span>
+            </li>
+          </ul>
+        </div>
+      </button>
+      <ChangeStatusPopup
+        show={changeRoleShow}
+        setShow={setChangeRoleShow}
+        order={order}
+        fetchOrders={fetchOrders}
+      />
     </>
   );
 };

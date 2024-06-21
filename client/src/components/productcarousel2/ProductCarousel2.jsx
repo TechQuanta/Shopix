@@ -8,8 +8,9 @@ import { SwiperNavButtons } from '../swipernav/swiperNavButtons';
 import ProductItem from '../productitem/ProductItem';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../spinner/Spinner';
 
-const ProductCarousel2 = ({ products }) => {
+const ProductCarousel2 = ({ products, loading }) => {
     const navigate = useNavigate()
     return (
         <div className='product_row w-100 mt-4'>
@@ -31,9 +32,12 @@ const ProductCarousel2 = ({ products }) => {
                     )
                 })}
             </Swiper>
-            {products?.length <= 0 && <div className='noprofoundinselemain'>
+            {products?.length <= 0 && loading === false && <div className='noprofoundinselemain'>
                 <h1>Products unavailable, Add one to see here.</h1>
                 <Button onClick={() => navigate('/admin/products')}>Add One</Button>
+            </div>}
+            {loading === true && <div className='spinerrauto'>
+                <Spinner />
             </div>}
         </div>
     )

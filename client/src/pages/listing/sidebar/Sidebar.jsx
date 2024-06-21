@@ -154,7 +154,7 @@ const Sidebar = ({ filterdata, filterByPrice, handleBrandFilter, filterByCategor
                     </div>
                 </div>
                 <div className="filterbox">
-                    <h6>FILTER BY PRICE</h6>
+                    <h6 className='mb-3'>FILTER BY PRICE</h6>
 
                     <RangeSlider value={value} onInput={rangeslider} min={100} max={180000} step={5} />
 

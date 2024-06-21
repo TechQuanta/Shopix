@@ -23,7 +23,7 @@ const style = {
     zIndex: 9999999999,
 };
 
-export default function CategoryEditPopup({ show, setShow, category }) {
+export default function CategoryEditPopup({ show, setShow, category, fetchCategories }) {
 
     const [CategoryName, setCategoryName] = useState("");
     const [image, setImage] = useState("");
@@ -47,10 +47,12 @@ export default function CategoryEditPopup({ show, setShow, category }) {
 
         if (dataResponse.error) {
             toast.error(dataResponse.message)
+            fetchCategories();
             return;
         }
 
         if (dataResponse.success) {
+            fetchCategories();
             toast.success(`Category updated Successfully.`)
             setLoading(false)
         }

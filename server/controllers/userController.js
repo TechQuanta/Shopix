@@ -105,6 +105,7 @@ export const getAllusers = async (req, res) => {
             message: "All User ",
             data: allUsers,
             totalPages: totalPages,
+            totalPosts: totalPosts,
             page: page,
             success: true,
             error: false
@@ -191,6 +192,25 @@ export const getUser = async (req, res) => {
     }
 };
 
+export const getUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+
+        res.json({
+            message: "Users get Successfully",
+            data: users,
+            success: true,
+            error: false
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: err.message || err,
+            error: true,
+            success: false
+        })
+    }
+};
+
 export const updateUser = async (req, res) => {
     const { username, email, password, address, profilePic, gender, userId } = req.body;
 
@@ -227,6 +247,33 @@ export const updateUser = async (req, res) => {
             error: true,
             success: false
         })
-        console.log("Error in updateUser: ", err.message);
+    }
+};
+
+export const updateUserOrderCount = async (req, res) => {
+    let { orderCount } = req.body;
+
+    try {
+        let user = await User.findById(req.query.userid);
+        if (!user) return res.status(400).json({ error: "User not found" });
+
+        orderCount = parseInt(orderCount + user.orders);
+
+        user.orders = orderCount || user.orders;
+
+        user = await user.save();
+
+        res.json({
+            message: "User updated Successfully",
+            data: user,
+            success: true,
+            error: false
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: err.message || err,
+            error: true,
+            success: false
+        })
     }
 };
