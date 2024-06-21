@@ -20,11 +20,6 @@ const AreaCards = () => {
     fetchAllUsers();
   }, [])
 
-  useEffect(() => {
-    ordersData?.map(item => setTotalSales(parseInt(totalSales) + parseInt(item?.amount)))
-    ordersData?.map(item => setTotalProducts(parseInt(totalProducts) + parseInt(item?.products?.length)))
-  }, [ordersData])
-
   const fetchOrders = async () => {
     setIsLoading(true);
     const fetchData = await fetch(SummaryApi.getOrders.url, {
@@ -136,7 +131,7 @@ const AreaCards = () => {
 
   return (
     <section className="content-area-cards">
-      <AreaCard
+      {/* <AreaCard
         colors={["#e4e8ef", "#475be8"]}
         percentFillValue={60}
         cardInfo={{
@@ -153,7 +148,7 @@ const AreaCards = () => {
           value: "Rs. " + parseInt(totalSales / 100 * 10),
           text: "Available to payout",
         }}
-      />
+      /> */}
       <AreaCard
         colors={["#e4e8ef", "#f29a2e"]}
         percentFillValue={40}

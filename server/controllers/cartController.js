@@ -23,7 +23,7 @@ export const getcartList = async (req, res) => {
 export const createcartList = async (req, res) => {
     try {
 
-        const cartItem = await cartSchema.find({ productid: req.body.productid });
+        const cartItem = await cartSchema.find({ productid: req.body.productid, userid: req.body.userid });
 
         if (cartItem.length === 0) {
             let cartList = new cartSchema({

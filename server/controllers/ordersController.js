@@ -2,7 +2,7 @@ import orderSchema from "../models/ordersSchema.js";
 
 export const getOrders = async (req, res) => {
     try {
-        const orders = await orderSchema.find();
+        const orders = await orderSchema.find().sort({ _id: -1 });
 
         res.json({
             message: "orders fetched successfully.",
@@ -63,7 +63,7 @@ export const getOrdersByUser = async (req, res) => {
 
         let orders = [];
 
-        orders = await orderSchema.find({ userid: req.query.userid });
+        orders = await orderSchema.find({ userid: req.query.userid }).sort({ _id: -1 });
 
         res.json({
             message: "orders fetched successfully.",

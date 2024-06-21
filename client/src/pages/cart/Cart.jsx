@@ -12,6 +12,8 @@ import userAtom from '../../atom (global state)/userAtom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { ValuesContext } from '../../App'
 import cartAtom from '../../atom (global state)/cartAtom'
+import noWishlist from '../../assets/emptycart.jpeg';
+import { FaHome } from "react-icons/fa";
 
 const Cart = () => {
     const [cartdata, setCartData] = useState()
@@ -140,7 +142,7 @@ const Cart = () => {
                             <Button className='btn-lg button'>Apply Coupon</Button>
                         </div>
                     </div>
-                    <div className="row mt-4">
+                    {!cartdata?.length <= 0 ? (<div className="row mt-4">
                         <div className="col-md-8">
                             <div className="tablecart shadow">
                                 <div className="table-responsive">
@@ -211,7 +213,14 @@ const Cart = () => {
 
                             </div>
                         </div>
-                    </div>
+                    </div>) : (<div className='nowishlistdatcart'>
+                        <div className="nolistitems">
+                            <img src={noWishlist} alt="" />
+                            <span>Your Cart is currently empty.</span>
+                            <Link to={'/'}>  <Button><FaHome /> &nbsp;
+                                Continue Shopping</Button></Link>
+                        </div>
+                    </div>)}
                 </div>
             </section>
             <div className='mb-3'>

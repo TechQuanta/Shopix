@@ -4,7 +4,6 @@ const schema = new mongoose.Schema({
     producttitle: {
         type: String,
         required: [true, "Please enter the product name!"],
-        unique: true,
     },
     image: {
         type: String,

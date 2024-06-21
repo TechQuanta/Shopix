@@ -81,6 +81,7 @@ function App() {
 
     if (dataResponse.success) {
       setCart(cart + 1)
+      fetchCartData()
       toast.success(`Product Added To Cart Successfully.`)
       setAddingInCart(false)
     }
@@ -102,7 +103,7 @@ function App() {
     const dataResponse = await fetchData.json()
 
     if (dataResponse.success) {
-      setCart(dataResponse?.data?.length);
+      setCart(dataResponse?.data?.length)
     }
   }
 

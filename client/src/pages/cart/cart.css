@@ -246,6 +246,24 @@ a:hover {
     height: 300px;
 }
 
+.nowishlistdatcart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.nowishlistdatcart .nolistitems {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .nowishlistdat .nolistitems {
     display: flex;
     align-items: center;
@@ -254,11 +272,24 @@ a:hover {
     gap: 25px;
 }
 
+.nowishlistdatcart .nolistitems button {
+    color: #fff !important;
+    background: #ed174a !important;
+    border-radius: 14px !important;
+    padding: 7px 15px !important;
+}
+
 .nowishlistdat .nolistitems button {
     color: #fff !important;
     background: #ed174a !important;
     border-radius: 14px !important;
     padding: 7px 15px !important;
+}
+
+.nowishlistdatcart .nolistitems span {
+    color: #000 !important;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .nowishlistdat .nolistitems span {
