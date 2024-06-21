@@ -209,7 +209,6 @@ const ProductDetails = () => {
     }
 
     const addToMyList = async (id) => {
-        if (User?._id) {
             const fetchData = await fetch(SummaryApi.createMYListItem.url, {
                 method: SummaryApi.createMYListItem.method,
                 headers: { "Content-Type": "application/json" },
@@ -228,9 +227,6 @@ const ProductDetails = () => {
             if (dataResponse.error) {
                 toast.info(dataResponse.message)
             }
-        } else {
-            toast.info("User must be logged In to continue.")
-        }
     }
 
     const checkLiked = async (id) => {
