@@ -11,7 +11,6 @@ import cartRoutes from './routes/cartRoutes.js';
 import productReviewRoutes from './routes/productReviewRoutes.js';
 import myListRoutes from './routes/myListRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
-import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 
 dotenv.config();
@@ -20,11 +19,6 @@ const app = express();
 const __dirname = path.resolve();
 
 connectDB();
-
-app.use(cors({
-    origin: ["https://shopix-bd.onrender.com/", "https://shopix-bd.onrender.com/"],
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}))
 
 cloudinary.config({
     cloud_name: 'ddpz2khbx',
