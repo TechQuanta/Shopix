@@ -16,7 +16,7 @@ Some Features:
 -   ⏳ And much more!
 <div align=center>
 
- <img src="https://github.com/user-attachments/assets/72cbb471-9ea0-4991-b3a3-51fa273dbb10" width=900 height=600>
+ <img src="https://github.com/user-attachments/assets/72cbb471-9ea0-4991-b3a3-51fa273dbb10" width=900 height=500>
 
 </div>
 
